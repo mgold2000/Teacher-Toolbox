@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text} from 'react-native'
 
-function TakingRoleScreen(props) {
+function TakingRollScreen(props) {
     return (
-        <Text style={styles.baseText}>Taking Role Screen</Text>
+        <Text style={styles.baseText}>Taking Roll Screen</Text>
     );
 }
 
@@ -26,5 +26,5 @@ const styles = StyleSheet.create({
     }
 })
 
-export default TakingRoleScreen;
+export default TakingRollScreen;
 
