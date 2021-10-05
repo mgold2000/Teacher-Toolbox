@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, Button, View} from 'react-native'
 
-const WelcomeScreen = ({navigation}) => {
+const LogInScreen = ({navigation}) => {
     return (
         <View>
-        <Text style={styles.baseText}>Log-In Screen Screen</Text>
+        <Text style={styles.baseText}>Log-In Screen </Text>
         <Button 
             title="Go to Class Screen"
             onPress={() =>
@@ -35,5 +35,5 @@ const styles = StyleSheet.create({
     }
 })
 
-export default WelcomeScreen;
+export default LogInScreen;
 

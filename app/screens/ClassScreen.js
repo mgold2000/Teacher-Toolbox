@@ -1,16 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, Button, View} from 'react-native'
+import ClassList from '../components/ClassList'
 
-const WelcomeScreen = ({navigation}) => {
+
+
+const ClassScreen = ({navigation}) => {
     return (
-        <View>
+        <View style={styles.container}>
         <Text style={styles.baseText}>Class Screen</Text>
-        <Button 
-            title="Go to Room Layout Screen"
-            onPress={() =>
-            navigation.navigate('RoomLayOutScreen', { name: 'RoomLayOutScreen' })
-      }
-    />
+        <ClassList/>
     </View>
 
     );
@@ -32,8 +30,14 @@ const styles = StyleSheet.create({
         marginTop: 50,
         fontSize: 30,
         textAlignVertical: "center",
-    }
+    },
+    container: {
+        flex: 1,
+        backgroundColor: '#FCFCFC',
+      }
 })
 
-export default WelcomeScreen;
+export default ClassScreen;
+
+
 
