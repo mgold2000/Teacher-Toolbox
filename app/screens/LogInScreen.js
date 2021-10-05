@@ -4,7 +4,7 @@ import {StyleSheet, Text, Button, View} from 'react-native'
 const WelcomeScreen = ({navigation}) => {
     return (
         <View>
-        <Text style={styles.baseText}>Welcome Screen</Text>
+        <Text style={styles.baseText}>Log-In Screen Screen</Text>
         <Button 
             title="Go to Class Screen"
             onPress={() =>

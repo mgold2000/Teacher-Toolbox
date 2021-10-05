@@ -1,9 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native'
+import {StyleSheet, Text, Button, View} from 'react-native'
 
-function StudentScreen(props) {
+const WelcomeScreen = ({navigation}) => {
     return (
+        <View>
         <Text style={styles.baseText}>Student Screen</Text>
+    </View>
+
     );
 }
 
@@ -26,5 +29,5 @@ const styles = StyleSheet.create({
     }
 })
 
-export default StudentScreen;
+export default WelcomeScreen;
 

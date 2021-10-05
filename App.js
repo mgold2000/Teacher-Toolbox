@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View } from 'react-native';
-import WelcomeScreen from "./app/screens/WelcomeScreen";
+import LogInScreen from "./app/screens/LogInScreen";
 import AssignmentListScreen from "./app/screens/AssignmentListScreen";
 import ClassGradeScreen from "./app/screens/ClassGradeScreen";
 import ClassScreen from "./app/screens/ClassScreen";
@@ -18,7 +18,7 @@ const MyStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen}/>
+        <Stack.Screen name="LogInScreen" component={LogInScreen}/>
         <Stack.Screen name="ClassScreen" component={ClassScreen} />
         <Stack.Screen name="AssignmentListScreen" component={AssignmentListScreen} />
         <Stack.Screen name="ClassGradeScreen" component={ClassGradeScreen} />

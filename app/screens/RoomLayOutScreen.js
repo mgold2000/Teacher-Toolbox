@@ -1,9 +1,24 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native'
+import {StyleSheet, Text, Button, View} from 'react-native'
 
-function RoomLayOutScreen(props) {
+const WelcomeScreen = ({navigation}) => {
     return (
-        <Text style={styles.baseText}>Room Lay Out Screen</Text>
+        <View>
+        <Text style={styles.baseText}>Room Layout Screen</Text>
+        <Button 
+            title="Go to Student Screen"
+            onPress={() =>
+            navigation.navigate('StudentScreen', { name: 'StudentScreen' })
+            }
+        />
+        <Button 
+            title="Go to Take Roll"
+            onPress={() =>
+            navigation.navigate('TakingRollScreen', { name: 'TakingRollScreen' })
+            }
+        />
+    </View>
+
     );
 }
 
@@ -26,5 +41,5 @@ const styles = StyleSheet.create({
     }
 })
 
-export default RoomLayOutScreen;
+export default WelcomeScreen;
 
