@@ -1,33 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableHighlight, SafeAreaView, Button,Alert } from 'react-native';
+import * as React from 'react';
+import { View } from 'react-native';
+import WelcomeScreen from "./app/screens/WelcomeScreen";
+import AssignmentListScreen from "./app/screens/AssignmentListScreen";
+import ClassGradeScreen from "./app/screens/ClassGradeScreen";
+import ClassScreen from "./app/screens/ClassScreen";
+import CreateAssignmentScreen from "./app/screens/CreateAssignmentScreen";
+import RoomLayOutScreen from "./app/screens/RoomLayOutScreen";
+import SideBarScreen from "./app/screens/SideBarScreen";
+import StudentScreen from "./app/screens/StudentScreen";
+import TakingRoleScreen from "./app/screens/TakingRoleScreen";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
-  //Functions Go Here
-const handlePress = () => console.log("Text Pressed");
+const Stack = createNativeStackNavigator();
+
+const MyStack = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <Button color ="orange" title="Click Me Fucker" 
-      onPress={() => Alert.prompt("Title", "Message", text => console.log(text))}/>
-      <Text numberOfLines={1} onPress={handlePress}> text</Text>
-      <TouchableHighlight onPress={() => console.log("Image Tapped")} >
-        <Image source={{     
-          width:200,
-          height: 200,
-          uri: "https://picsum.photos/200/300"}}/>
-      </TouchableHighlight>
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen}/>
+        <Stack.Screen name="ClassScreen" component={ClassScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const containerStyle = { backgroundColor: "orange"}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default MyStack;
