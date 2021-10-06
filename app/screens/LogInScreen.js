@@ -1,17 +1,41 @@
 import React from 'react';
-import {StyleSheet, Text, Button, View} from 'react-native'
+import {StyleSheet, Text, Button, View, TextInput, SafeAreaView} from 'react-native'
 
 const LogInScreen = ({navigation}) => {
+    const [text, onChangeText] = React.useState(null);
+    const [text2,onChangeText2] = React.useState(null);
     return (
-        <View>
-        <Text style={styles.baseText}>Log-In Screen </Text>
+        <SafeAreaView>
+        <SafeAreaView>
+        <Text style={styles.baseText}>LOGIN</Text>
+        <SafeAreaView>
+        <TextInput 
+            style={styles.input} 
+            onChangeText={onChangeText}
+            value={text}
+            textAlign='center'
+            allowFontScaling={true}
+            placeholder="Username"/>
+
+        <TextInput 
+            style={styles.input} 
+            onChangeText={onChangeText2}
+            value={text2}
+            placeholder="Password"/>
+        <Text>Username - {text}</Text>
+        <Text>Password - {text2}</Text>
+        </SafeAreaView>
+        </SafeAreaView>
+        <SafeAreaView>
         <Button 
-            title="Go to Class Screen"
+            title="LOGIN"
             onPress={() =>
             navigation.navigate('ClassScreen', { name: 'ClassScreen' })
       }
     />
-    </View>
+    </SafeAreaView>
+    </SafeAreaView>
+    
 
     );
 }
@@ -19,7 +43,7 @@ const LogInScreen = ({navigation}) => {
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: 'brown',
         justifyContent: 'center',
         flexDirection: 'row',
         alignItems: 'center',
@@ -30,8 +54,17 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontWeight: "bold",
         marginTop: 50,
-        fontSize: 30,
+        fontSize: 50 ,
         textAlignVertical: "center",
+        padding: 20,
+    },
+    input: {
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
+        padding: 20,
+        borderWidth: .5,
+        flex: 1,
     }
 })
 

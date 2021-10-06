@@ -7,7 +7,7 @@ import ClassList from '../components/ClassList'
 const ClassScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
-        <Text style={styles.baseText}>Class Screen</Text>
+        <Text style={styles.baseText}>Class</Text>
         <ClassList/>
     </View>
 
@@ -23,13 +23,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     baseText: {
-        color: "orange",
-        textAlign: "center",
-        textAlign: "center",
+        color: "black",
+        textAlign: "left",
         fontWeight: "bold",
         marginTop: 50,
         fontSize: 30,
         textAlignVertical: "center",
+        left: 6
     },
     container: {
         flex: 1,

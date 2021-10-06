@@ -1,5 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, Button, View} from 'react-native'
+import {StyleSheet, Text, Button, View, width, height} from 'react-native'
+
+const WIDTH = 1125;
 
 const WelcomeScreen = ({navigation}) => {
     return (
@@ -17,6 +19,11 @@ const WelcomeScreen = ({navigation}) => {
             navigation.navigate('TakingRollScreen', { name: 'TakingRollScreen' })
             }
         />
+        <View style={{flexDirection: 'row',justifyContent: 'center',position: 'absolute', bottom: -540, }}>
+            <View style={styles.box}></View>
+            <View style={styles.box}></View>
+            <View style={styles.box}></View>
+        </View>
     </View>
 
     );
@@ -38,6 +45,18 @@ const styles = StyleSheet.create({
         marginTop: 50,
         fontSize: 30,
         textAlignVertical: "center",
+    },
+    box: {
+        width: WIDTH/3 /3 -4.5,
+        height: 100,
+        backgroundColor: "orange",
+        flexDirection: "row",
+        borderWidth: 4,
+        borderColor: 'white',
+        borderRadius: 25,
+        margin:2,    
+
+        
     }
 })
 

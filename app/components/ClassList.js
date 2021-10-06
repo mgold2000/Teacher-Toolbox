@@ -17,20 +17,37 @@ const ClassList = () => {
                     { 
                       key:1,
                       title: 'Class1',
-                      description: 'Decription',
+                      classNum: 'Description',
                       image_url: require('../assets/Potluck.jpg'),
+                      backgroundClr: '#a8e6cf'
                     },
                     { 
                         key:2,
                         title: 'Class2',
-                        description: 'Decription',
+                        classNum: 'Decription',
                         image_url: require('../assets/Potluck.jpg'),
+                        backgroundClr: '#dcedc1'
                       },
+                      { 
+                        key:3,
+                        title: 'Class3',
+                        classNum: 'Decription',
+                        image_url: require('../assets/Potluck.jpg'),
+                        backgroundClr: '#ffd3b6'
+                      },
+                      { 
+                          key:4,
+                          title: 'Class4',
+                          classNum: 'Decription',
+                          image_url: require('../assets/Potluck.jpg'),
+                          backgroundClr: '#ffaaa5'
+                        },
                 ]}
                 renderItem={({item}) => <ClassView
                     title={item.title}
-                    description={item.description}
+                    classNum={item.classNum}
                     image_url={item.image_url}
+                    backgroundClr={item.backgroundClr}
                 />}
             />
     </View>
