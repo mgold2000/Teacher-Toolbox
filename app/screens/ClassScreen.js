@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useEffect,userContext} from 'react';
 import {StyleSheet, Text, Button, View} from 'react-native'
 import ClassList from '../components/ClassList'
 
 
 
-const ClassScreen = ({navigation}) => {
+const ClassScreen = ({navigation} ) => {
+
+    useEffect(() => { 
+        navigation.setOptions({ 
+          headerTitle: '',
+        }) 
+      }, [])
+
     return (
         <View style={styles.container}>
         <Text style={styles.baseText}>Class</Text>

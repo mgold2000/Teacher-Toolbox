@@ -4,46 +4,48 @@ import {StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'react
 import {useNavigation} from '@react-navigation/native'
 
 const ITEM_HEIGHT = 150;
-const ClassView = ({title, classNum,image_url, backgroundClr}) => {
+const ClassBox = ({title, classNum,image_url, backgroundClr}) => {
     const navigation = useNavigation();
+
+    
     return (
     <View > 
-    <TouchableOpacity onPress={() =>
-            navigation.navigate('RoomLayOutScreen', { name: 'RoomLayOutScreen' })
-        } 
-        style={{
-        flex: 1,
-        flexDirection: 'row',
-        borderRadius: 5,
-        elevation: 2,
-        borderRadius: 18,
-        height: ITEM_HEIGHT,
-        marginBottom: 2,
-        marginTop: 2,
-        marginLeft: 2,
-        marginRight: 2,
-        borderColor: '#d6d6d6',
-        borderTopWidth: 0,
-        borderLeftWidth: 2.5,
-        borderRightWidth: 2.75,
-        borderWidth: 5,
-        backgroundColor: backgroundClr
+        <TouchableOpacity onPress={() =>
+                navigation.navigate('RoomLayOutScreen', { name: 'RoomLayOutScreen' })
+            } 
+            style={{
+            flex: 1,
+            flexDirection: 'row',
+            borderRadius: 5,
+            elevation: 2,
+            borderRadius: 18,
+            height: ITEM_HEIGHT,
+            marginBottom: 2,
+            marginTop: 2,
+            marginLeft: 2,
+            marginRight: 2,
+            borderColor: '#d6d6d6',
+            borderTopWidth: 0,
+            borderLeftWidth: 2.5,
+            borderRightWidth: 2.75,
+            borderWidth: 5,
+            backgroundColor: backgroundClr
 
-    }} >
-        <ScrollView>
-    <View >
-        <Image style={styles.photo} source={image_url}/>
-        <View style={styles.container_text}>
-            <Text style={styles.title}>
-                {title}
-            </Text>
-            <Text style={styles.classNum}>
-                {classNum}
-            </Text>
+        }} >
+            <ScrollView>
+        <View >
+            <Image style={styles.photo} source={image_url}/>
+            <View style={styles.container_text}>
+                <Text style={styles.title}>
+                    {title}
+                </Text>
+                <Text style={styles.classNum}>
+                    {classNum}
+                </Text>
+            </View>
         </View>
-    </View>
-    </ScrollView>
-    </TouchableOpacity>
+        </ScrollView>
+        </TouchableOpacity>
     </View>
     );
     };
@@ -92,5 +94,5 @@ const styles = StyleSheet.create({
     },
 })
 
-export default ClassView;
+export default ClassBox;
 

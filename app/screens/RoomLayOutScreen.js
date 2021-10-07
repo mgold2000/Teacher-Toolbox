@@ -1,9 +1,16 @@
-import React from 'react';
+import React, {useEffect,userContext} from 'react';
 import {StyleSheet, Text, Button, View, width, height} from 'react-native'
 
 const WIDTH = 1125;
 
 const WelcomeScreen = ({navigation}) => {
+    //Sets the Title to ''
+    useEffect(() => { 
+        navigation.setOptions({ 
+          headerTitle: '',
+        }) 
+      }, [])
+
     return (
         <View>
         <Text style={styles.baseText}>Room Layout Screen</Text>

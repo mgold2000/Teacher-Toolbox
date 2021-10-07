@@ -10,13 +10,15 @@ import SideBarScreen from "./app/screens/SideBarScreen";
 import StudentScreen from "./app/screens/StudentScreen";
 import TakingRollScreen from "./app/screens/TakingRollScreen";
 import ClassList from "./app/components/ClassList";
-import ClassView from "./app/components/ClassView";
+import ClassBox from "./app/components/ClassBox";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
+
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -30,7 +32,7 @@ function App() {
         <Stack.Screen name="StudentScreen" component={StudentScreen} />
         <Stack.Screen name="TakingRollScreen" component={TakingRollScreen} />
         <Stack.Screen name="ClassList" component={ClassList} />
-        <Stack.Screen name="ClassView" component={ClassView} />
+        <Stack.Screen name="ClassBox" component={ClassBox} />
       </Stack.Navigator>
     </NavigationContainer>
   );

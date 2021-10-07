@@ -1,9 +1,16 @@
-import React from 'react';
+import React, {useEffect,userContext} from 'react';
 import {StyleSheet, Text, Button, View, TextInput, SafeAreaView} from 'react-native'
 
 const LogInScreen = ({navigation}) => {
     const [text, onChangeText] = React.useState(null);
     const [text2,onChangeText2] = React.useState(null);
+    //Sets the Title to ''
+    useEffect(() => { 
+        navigation.setOptions({ 
+          headerTitle: '',
+        }) 
+      }, [])
+
     return (
         <SafeAreaView>
         <SafeAreaView>
@@ -13,7 +20,6 @@ const LogInScreen = ({navigation}) => {
             style={styles.input} 
             onChangeText={onChangeText}
             value={text}
-            textAlign='center'
             allowFontScaling={true}
             placeholder="Username"/>
 

@@ -1,7 +1,14 @@
-import React from 'react';
+import React, {useEffect,userContext} from 'react';
 import {StyleSheet, Text, Button, View} from 'react-native'
 
 const WelcomeScreen = ({navigation}) => {
+    //Sets the Title to ''
+    useEffect(() => { 
+        navigation.setOptions({ 
+          headerTitle: '',
+        }) 
+      }, [])
+
     return (
         <View>
         <Text style={styles.baseText}>Student Screen</Text>

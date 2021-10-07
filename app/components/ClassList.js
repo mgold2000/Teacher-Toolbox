@@ -1,15 +1,10 @@
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
-import ClassView from '../components/ClassView'
-
-const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-        },
-});
-
+import ClassBox from './ClassBox'
 
 const ClassList = () => {
+
+
     return (
     <View style={styles.container}>
         <FlatList
@@ -43,7 +38,7 @@ const ClassList = () => {
                           backgroundClr: '#ffaaa5'
                         },
                 ]}
-                renderItem={({item}) => <ClassView
+                renderItem={({item}) => <ClassBox
                     title={item.title}
                     classNum={item.classNum}
                     image_url={item.image_url}
@@ -54,4 +49,10 @@ const ClassList = () => {
     );
 };
 
+
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+  },
+});
 export default ClassList;
