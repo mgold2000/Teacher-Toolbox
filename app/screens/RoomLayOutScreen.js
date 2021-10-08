@@ -6,11 +6,6 @@ import store from '../store';
 const WIDTH = 1125;
 const RoomLayOutScreen = ({navigation}) => {
     //Sets the Title to ''
-    useEffect(() => { 
-        navigation.setOptions({ 
-          headerTitle: '',
-        }) 
-      }, [])
     const selectedData = useSelector((state) => state.key)
     return (
         <View>

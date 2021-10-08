@@ -25,17 +25,17 @@ const App = (props) => (
     <Provider store={store}>
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="LogInScreen" component={LogInScreen}/>
-        <Stack.Screen name="ClassScreen" component={ClassScreen} />
-        <Stack.Screen name="AssignmentListScreen" component={AssignmentListScreen} />
-        <Stack.Screen name="ClassGradeScreen" component={ClassGradeScreen} />
-        <Stack.Screen name="CreateAssignmentScreen" component={CreateAssignmentScreen} />
-        <Stack.Screen name="RoomLayOutScreen" component={RoomLayOutScreen} />
-        <Stack.Screen name="SideBarScreen" component={SideBarScreen} />
-        <Stack.Screen name="StudentScreen" component={StudentScreen} />
-        <Stack.Screen name="TakingRollScreen" component={TakingRollScreen} />
-        <Stack.Screen name="ClassList" component={ClassList} />
-        <Stack.Screen name="ClassBox" component={ClassBox} />
+        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="LogInScreen" component={LogInScreen}/>
+        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="ClassScreen" component={ClassScreen} />
+        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="AssignmentListScreen" component={AssignmentListScreen} />
+        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="ClassGradeScreen" component={ClassGradeScreen} />
+        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="CreateAssignmentScreen" component={CreateAssignmentScreen} />
+        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="RoomLayOutScreen" component={RoomLayOutScreen} />
+        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="SideBarScreen" component={SideBarScreen} />
+        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="StudentScreen" component={StudentScreen} />
+        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="TakingRollScreen" component={TakingRollScreen} />
+        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="ClassList" component={ClassList} />
+        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="ClassBox" component={ClassBox} />
       </Stack.Navigator>
     </NavigationContainer>
     </Provider>

@@ -6,12 +6,6 @@ import ClassList from '../components/ClassList'
 
 const ClassScreen = ({navigation} ) => {
 
-    useEffect(() => { 
-        navigation.setOptions({ 
-          headerTitle: '',
-        }) 
-      }, [])
-
     return (
         <View style={styles.container}>
         <Text style={styles.baseText}>Class</Text>

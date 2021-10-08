@@ -11,8 +11,6 @@ const reducer =(state = initialState, action) =>{
         default:
             return state;
         case CLICKED_ON_CLASS: {
-            console.log("Clicked ");
-            console.log(state.key);
             return {
                 ...state,
                 key: action.data ,
