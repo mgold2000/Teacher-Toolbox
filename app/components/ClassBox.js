@@ -39,7 +39,7 @@ const ClassBox = (props) => {
             borderLeftWidth: 2.5,
             borderRightWidth: 2.75,
             borderWidth: 5,
-            backgroundColor: 'white'
+            backgroundColor: props.backgroundClr,   
 
         }} >
             <ScrollView>
