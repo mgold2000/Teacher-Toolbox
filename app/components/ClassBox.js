@@ -1,17 +1,29 @@
 import React from 'react';
+import store from '../store'
 import * as Font from 'expo-font'
 import {StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
+import {clickedOnClass} from '../actions/actions.js'
+import {connect } from 'react-redux'
+
+
+//The Class Box Component Displays information of each class
+    //Name, Image, ClassID
+//The Teacher can click on a Class Box and be routed to it's roomlayout
+
 
 const ITEM_HEIGHT = 150;
-const ClassBox = ({title, classNum,image_url, backgroundClr}) => {
+const ClassBox = (props) => {
     const navigation = useNavigation();
 
-    
+    const submitClass = (key) => store.dispatch(clickedOnClass(key));
+
     return (
     <View > 
-        <TouchableOpacity onPress={() =>
-                navigation.navigate('RoomLayOutScreen', { name: 'RoomLayOutScreen' })
+        <TouchableOpacity onPress={() =>{
+                navigation.navigate('RoomLayOutScreen', { name: 'RoomLayOutScreen' }),
+                store.dispatch(clickedOnClass(props.key))
+            }
             } 
             style={{
             flex: 1,
@@ -29,18 +41,18 @@ const ClassBox = ({title, classNum,image_url, backgroundClr}) => {
             borderLeftWidth: 2.5,
             borderRightWidth: 2.75,
             borderWidth: 5,
-            backgroundColor: backgroundClr
+            backgroundColor: 'white'
 
         }} >
             <ScrollView>
         <View >
-            <Image style={styles.photo} source={image_url}/>
+            <Image style={styles.photo} source={props.image_url}/>
             <View style={styles.container_text}>
                 <Text style={styles.title}>
-                    {title}
+                    {props.title}
                 </Text>
                 <Text style={styles.classNum}>
-                    {classNum}
+                    {props.classNum}
                 </Text>
             </View>
         </View>
@@ -94,5 +106,10 @@ const styles = StyleSheet.create({
     },
 })
 
-export default ClassBox;
+const mapStateToProps = (state) => ({key: state.key});
+const mapDispatchToProps = (dispatch) => ({
+    clickedOnClass: () => dispatch({type: ActionTypes.CLICKED_ON_CLASS})
+})
+const connectComponent = connect(mapStateToProps, mapDispatchToProps);
 
+export default connectComponent(ClassBox);

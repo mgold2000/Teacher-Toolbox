@@ -3,14 +3,14 @@ import {StyleSheet, Text, Button, View, width, height} from 'react-native'
 
 const WIDTH = 1125;
 
-const WelcomeScreen = ({navigation}) => {
+const RoomLayOutScreen = ({navigation}) => {
     //Sets the Title to ''
     useEffect(() => { 
         navigation.setOptions({ 
           headerTitle: '',
         }) 
       }, [])
-
+      
     return (
         <View>
         <Text style={styles.baseText}>Room Layout Screen</Text>
@@ -67,5 +67,5 @@ const styles = StyleSheet.create({
     }
 })
 
-export default WelcomeScreen;
+export default RoomLayOutScreen;
 

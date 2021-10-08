@@ -2,7 +2,7 @@ import React, {useEffect,userContext} from 'react';
 import {StyleSheet, Text, Button, View} from 'react-native'
 import ClassList from '../components/ClassList'
 
-
+//This is the Screen displaying the list of Classes the teacher has
 
 const ClassScreen = ({navigation} ) => {
 

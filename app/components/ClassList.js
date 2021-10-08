@@ -2,6 +2,10 @@ import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import ClassBox from './ClassBox'
 
+//The Class Lis Component Displays a List of ClassBox
+//It Takes in Data from an API
+
+
 const ClassList = () => {
 
 
@@ -39,6 +43,7 @@ const ClassList = () => {
                         },
                 ]}
                 renderItem={({item}) => <ClassBox
+                    classID={item.key}
                     title={item.title}
                     classNum={item.classNum}
                     image_url={item.image_url}
