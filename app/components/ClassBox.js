@@ -16,13 +16,11 @@ const ITEM_HEIGHT = 150;
 const ClassBox = (props) => {
     const navigation = useNavigation();
 
-    const submitClass = (key) => store.dispatch(clickedOnClass(key));
-
     return (
     <View > 
         <TouchableOpacity onPress={() =>{
                 navigation.navigate('RoomLayOutScreen', { name: 'RoomLayOutScreen' }),
-                store.dispatch(clickedOnClass(props.key))
+                store.dispatch(clickedOnClass(props.classID));
             }
             } 
             style={{

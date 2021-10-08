@@ -2,20 +2,25 @@
 import {CLICKED_ON_CLASS} from '../actions/types'
 
 const initialState = {
-    key: ''
+    key: 0
 }
 
-const reducer =(state = initialState, action) =>{
-    console.log(action.data)
+
+const reducer =(state = initialState, action) =>{   
     switch(action.type){
         default:
             return state;
-        case CLICKED_ON_CLASS:
+        case CLICKED_ON_CLASS: {
+            console.log("Clicked ");
+            console.log(state.key);
             return {
                 ...state,
-                key: action.data,
+                key: action.data ,
                 
             }
+            
+        }
+        
     }
     
 }
