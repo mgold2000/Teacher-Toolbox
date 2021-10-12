@@ -1,6 +1,5 @@
-import * as React from 'react';
-import { View } from 'react-native';
-import store from './app/store'
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LogInScreen from "./app/screens/LogInScreen";
 import AssignmentListScreen from "./app/screens/AssignmentListScreen";
 import ClassGradeScreen from "./app/screens/ClassGradeScreen";
@@ -13,16 +12,16 @@ import TakingRollScreen from "./app/screens/TakingRollScreen";
 import ClassList from "./app/components/ClassList";
 import ClassBox from "./app/components/ClassBox";
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux';
+import configureStore from './app/store';
+
+const Store = configureStore();
+
 const Stack = createNativeStackNavigator();
 
 
-
-const App = (props) => (
-
-
-    <Provider store={store}>
+export default App = () => (
+  <Provider store={Store}>
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="LogInScreen" component={LogInScreen}/>
@@ -41,5 +40,3 @@ const App = (props) => (
     </Provider>
 
 );
-
-export default App;

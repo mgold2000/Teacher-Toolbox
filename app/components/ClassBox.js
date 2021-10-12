@@ -5,6 +5,7 @@ import {StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'react
 import {useNavigation} from '@react-navigation/native'
 import {clickedOnClass} from '../actions/actions.js'
 import {connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 
 
 //The Class Box Component Displays information of each class
@@ -15,7 +16,8 @@ import {connect } from 'react-redux'
 const ITEM_HEIGHT = 150;
 const ClassBox = (props) => {
     const navigation = useNavigation();
-
+    const dispatch = useDispatch();
+    const clickedOnClass = (clas) => dispatch(clickedOnClass(clas));
     return (
     <View > 
         <TouchableOpacity onPress={() =>{
