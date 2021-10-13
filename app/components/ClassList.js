@@ -20,6 +20,7 @@ const ClassList = () => {
                     image_url={item.image_url}
                     backgroundClr={item.backgroundClr}
                 />}
+                keyExtractor={(item, classID)=> classID.toString()} 
             />
     </View>
     );

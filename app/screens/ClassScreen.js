@@ -18,7 +18,7 @@ const ClassScreen = ({navigation} ) => {
         <Text style={styles.baseText}>Class</Text>
         <ClassList/>
         <TouchableOpacity style={styles.addClassButton} 
-        onPress={() => submitClass("Class 1")}
+        onPress={() => submitClass("Class 4")}
             ><Text>ADD CLASS</Text></TouchableOpacity>
     </View>
 

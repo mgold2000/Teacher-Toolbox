@@ -1,6 +1,4 @@
 import React from 'react';
-import store from '../store'
-import * as Font from 'expo-font'
 import {StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {clickedOnClass} from '../actions/actions.js'
@@ -11,18 +9,22 @@ import { useDispatch, useSelector } from 'react-redux';
 //The Class Box Component Displays information of each class
     //Name, Image, ClassID
 //The Teacher can click on a Class Box and be routed to it's roomlayout
-
-
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+  const colors = ["#FBE8A6", "#F4976C", "#B4DFE5", "#D2FDFF"]
 const ITEM_HEIGHT = 150;
 const ClassBox = (props) => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
-    const clickedOnClass = (clas) => dispatch(clickedOnClass(clas));
+
+    const submitClass = (classID) => dispatch(clickedOnClass(classID));
+
     return (
     <View > 
         <TouchableOpacity onPress={() =>{
                 navigation.navigate('RoomLayOutScreen', { name: 'RoomLayOutScreen' }),
-                store.dispatch(clickedOnClass(props.classID));
+                submitClass(props.classID);
             }
             } 
             style={{
@@ -41,7 +43,7 @@ const ClassBox = (props) => {
             borderLeftWidth: 2.5,
             borderRightWidth: 2.75,
             borderWidth: 5,
-            backgroundColor: props.backgroundClr,   
+            backgroundColor: colors[getRandomInt(4)],   
 
         }} >
             <ScrollView>

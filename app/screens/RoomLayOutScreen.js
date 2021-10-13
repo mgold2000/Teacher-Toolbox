@@ -1,15 +1,14 @@
 import React, {useEffect,userContext} from 'react';
 import {StyleSheet, Text, Button, View, width, height} from 'react-native'
 import { useSelector } from 'react-redux'
-import store from '../store';
 
 const WIDTH = 1125;
 const RoomLayOutScreen = ({navigation}) => {
     //Sets the Title to ''
-    const selectedData = useSelector((state) => state.key)
+    const selectedData = useSelector(state => state.reducer.classID)
     return (
         <View>
-        <Text style={styles.baseText}>Class {selectedData}</Text>
+        <Text  style={styles.baseText}>Class {selectedData}</Text>
         <Button 
             title="Go to Student Screen"
             onPress={() =>

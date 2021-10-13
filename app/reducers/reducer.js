@@ -2,7 +2,7 @@
 import {CLICKED_ON_CLASS} from '../actions/types'
 
 const initialState = {
-    key: 0
+    classID: 0
 }
 
 
@@ -13,7 +13,7 @@ const reducer =(state = initialState, action) =>{
         case CLICKED_ON_CLASS: {
             return {
                 ...state,
-                key: action.data ,
+                classID:action.data,
                 
             }
             

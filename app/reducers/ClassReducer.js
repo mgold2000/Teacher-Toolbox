@@ -13,11 +13,11 @@ const ClassReducer = (state = initialState, action) => {
       return {
         ...state,   
         listOfClasses: state.listOfClasses.concat({
-          classID: Math.random(),
-          classNum: "Class 1",
-          backgroundClr:'orange',
-          title: "Class 1",
-          image_url: './assets/Potluck.jpg'
+          classID: state.listOfClasses.length + 1,
+          classNum: "Class " + (state.listOfClasses.length + 1),
+          backgroundClr:'white',
+          title: "Class " + (state.listOfClasses.length + 1),
+          image_url: require('../assets/Potluck.jpg')
         })
       };
     case DELETE_CLASS:
