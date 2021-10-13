@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'react-native'
+import {StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, TouchableWithoutFeedback} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {clickedOnClass} from '../actions/actions.js'
 import {connect } from 'react-redux'
@@ -22,6 +22,7 @@ const ClassBox = (props) => {
 
     return (
     <View > 
+        
         <TouchableOpacity onPress={() =>{
                 navigation.navigate('RoomLayOutScreen', { name: 'RoomLayOutScreen' }),
                 submitClass(props.classID);
@@ -46,8 +47,9 @@ const ClassBox = (props) => {
             backgroundColor: colors[getRandomInt(4)],   
 
         }} >
-            <ScrollView>
-        <View >
+            
+        <ScrollView>
+            <View >
             <Image style={styles.photo} source={props.image_url}/>
             <View style={styles.container_text}>
                 <Text style={styles.title}>
@@ -60,7 +62,15 @@ const ClassBox = (props) => {
         </View>
         </ScrollView>
         </TouchableOpacity>
+        <TouchableWithoutFeedback>
+            <TouchableOpacity style={styles.leftBox} onPress={() => console.log("clicked the three buttons")}>
+                <View style={styles.tinyDot}></View>
+                <View style={styles.tinyDot}></View>
+                <View style={styles.tinyDot}></View>
+            </TouchableOpacity>
+        </TouchableWithoutFeedback>
     </View>
+    
     );
     };
 
@@ -106,6 +116,25 @@ const styles = StyleSheet.create({
         marginTop: ITEM_HEIGHT * .1,
         borderColor: '#d6d6d6',
     },
+    leftBox: {
+        right:0,
+        top: 0,
+        position: 'absolute', 
+        alignItems: 'center',
+        alignContent: 'center',
+        width: 60,
+        height: 60, 
+  
+    },
+    tinyDot: {
+        width: 5,
+        height: 5,
+        backgroundColor: 'grey',
+        borderRadius: 5/2,
+        margin: 1.5,
+        top: 15
+        
+    }
 })
 
 const mapStateToProps = (state) => ({key: state.key});

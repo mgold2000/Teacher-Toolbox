@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         height: 100,
         backgroundColor: "orange",
         flexDirection: "row",
-        borderWidth: 4,
+        borderWidth: 2,
         borderColor: 'white',
         borderRadius: 25,
         margin:2,    
