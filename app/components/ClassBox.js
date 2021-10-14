@@ -9,10 +9,16 @@ import { useDispatch, useSelector } from 'react-redux';
 //The Class Box Component Displays information of each class
     //Name, Image, ClassID
 //The Teacher can click on a Class Box and be routed to it's roomlayout
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+function getColor(){
+    if(index +1 > colors.length){
+        index = 0;
+    }else{
+        index++;
+    }
+    return colors[index];
 }
-  const colors = ["#FBE8A6", "#F4976C", "#B4DFE5", "#D2FDFF"]
+const colors = ["#acddde", "#caf1de", "#fef8dd", "#eif8dc", "#ffe7c7",];
+var index = 0;
 const ITEM_HEIGHT = 150;
 const ClassBox = (props) => {
     const navigation = useNavigation();
@@ -44,7 +50,7 @@ const ClassBox = (props) => {
             borderLeftWidth: 2.5,
             borderRightWidth: 2.75,
             borderWidth: 5,
-            backgroundColor: colors[getRandomInt(4)],   
+            backgroundColor: getColor(),   
 
         }} >
             
@@ -56,7 +62,6 @@ const ClassBox = (props) => {
                     {props.title}
                 </Text>
                 <Text style={styles.classNum}>
-                    {props.classNum}
                 </Text>
             </View>
         </View>
@@ -91,7 +96,9 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 40,
         color: '#1f1f1f',
-        flex: 2,
+        flex: 5,
+        right: -10,
+        top: 5
     },
     container_text: {
         flex: 1,
@@ -132,8 +139,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'grey',
         borderRadius: 5/2,
         margin: 1.5,
-        top: 15
-        
+        top: 15   
     }
 })
 
