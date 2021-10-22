@@ -10,10 +10,13 @@ import {
   TouchableWithoutFeedback,
   Modal,
   Animated,
+  Dimensions,
 } from "react-native";
 import { useSelector } from "react-redux";
+import { globalStyles } from "../global";
 
-const WIDTH = 1125;
+const W = Dimensions.get("window").width;
+const H = Dimensions.get("window").height;
 const TakeRollPopUp = ({ visible, children }) => {
   const [showModal, setShowModal] = useState(visible);
   const scaleValue = useRef(new Animated.Value(0)).current;
@@ -80,7 +83,10 @@ const RandomStudentPopUp = ({ visible, children }) => {
     <Modal transparent visible={showModal}>
       <View style={styles.modalBackground}>
         <Animated.View
-          style={[styles.container, { transform: [{ scale: scaleValue }] }]}
+          style={[
+            globalStyles.container,
+            { transform: [{ scale: scaleValue }] },
+          ]}
         >
           {children}
         </Animated.View>
@@ -151,7 +157,7 @@ const RoomLayOutScreen = ({ navigation }) => {
       <RandomStudentPopUp visible={visible2}>
         <View
           style={[
-            styles.container,
+            globalStyles.container,
             {
               // Try setting `flexDirection` to `"row"`.
               flexDirection: "column",
@@ -206,7 +212,7 @@ const RoomLayOutScreen = ({ navigation }) => {
           </View>
         </View>
       </ChangeLayOutPopUp>
-      <Text style={styles.baseText}>Class {selectedData}</Text>
+      <Text style={globalStyles.baseText}>Class {selectedData}</Text>
       <Button
         title="Go to Student Screen"
         onPress={() =>
@@ -216,9 +222,11 @@ const RoomLayOutScreen = ({ navigation }) => {
       <View
         style={{
           flexDirection: "row",
-          justifyContent: "center",
+          justifyContent: "space-between",
+          alignItems: "center",
           position: "absolute",
-          bottom: -540,
+          top: H - 200,
+          width: "99%",
         }}
       >
         <TouchableOpacity style={styles.box} onPress={() => setVisible1(true)}>
@@ -246,32 +254,13 @@ const RoomLayOutScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    backgroundColor: "white",
-    justifyContent: "center",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  baseText: {
-    color: "orange",
-    textAlign: "center",
-    fontWeight: "bold",
-    marginTop: 50,
-    fontSize: 30,
-    top: -40,
-    textAlignVertical: "center",
-  },
   box: {
-    width: WIDTH / 3 / 3 - 4.5,
+    width: W / 3,
     height: 100,
     backgroundColor: "orange",
-    flexDirection: "row",
     borderWidth: 2,
     borderColor: "white",
     borderRadius: 25,
-    margin: 2,
-    bottom: -50,
   },
   tinyDot: {
     width: 5,
@@ -338,10 +327,6 @@ const styles = StyleSheet.create({
     borderColor: "#d6d6d6",
     backgroundColor: "orange",
     alignItems: "center",
-    justifyContent: "center",
-  },
-  container: {
-    flex: 1,
     justifyContent: "center",
   },
 });

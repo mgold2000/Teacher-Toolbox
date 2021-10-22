@@ -5,11 +5,12 @@ import {
   Button,
   View,
   TouchableOpacity,
-  width,
-  height,
+  Dimensions,
 } from "react-native";
 import { globalStyles } from "../global";
 
+const W = Dimensions.get("window").width;
+const H = Dimensions.get("window").height;
 const WelcomeScreen = (props) => {
   //Sets the Title to ''
   return (
@@ -41,10 +42,10 @@ const WelcomeScreen = (props) => {
         </View>
       </View>
       <TouchableOpacity style={styles.box1}>
-        <Text>View Grades </Text>
+        <Text style={styles.titleText}>View Grades </Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.box1}>
-        <Text>View Attendance </Text>
+        <Text style={styles.titleText}>View Attendance </Text>
       </TouchableOpacity>
     </View>
   );

@@ -22,7 +22,7 @@ const LogInScreen = ({ navigation }) => {
   return (
     <SafeAreaView>
       <SafeAreaView>
-        <Text style={styles.baseText}>LOGIN</Text>
+        <Text style={globalStyles.baseText}>LOGIN</Text>
         <SafeAreaView>
           <TextInput
             style={styles.input}
@@ -55,23 +55,6 @@ const LogInScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    backgroundColor: "brown",
-    justifyContent: "center",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  baseText: {
-    color: "orange",
-    textAlign: "center",
-    textAlign: "center",
-    fontWeight: "bold",
-    marginTop: 50,
-    fontSize: 50,
-    textAlignVertical: "center",
-    padding: 20,
-  },
   input: {
     height: 40,
     margin: 12,
