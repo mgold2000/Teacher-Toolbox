@@ -4,8 +4,7 @@ import {
   Text,
   Button,
   View,
-  width,
-  height,
+  Image,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Modal,
@@ -219,6 +218,7 @@ const RoomLayOutScreen = ({ navigation }) => {
           navigation.navigate("StudentScreen", { name: "StudentScreen" })
         }
       />
+      <View style={styles.thinline}></View>
       <View
         style={{
           flexDirection: "row",
@@ -231,12 +231,24 @@ const RoomLayOutScreen = ({ navigation }) => {
       >
         <TouchableOpacity style={styles.box} onPress={() => setVisible1(true)}>
           <Text style={styles.buttonText}>Take Roll</Text>
+          <Image
+            style={styles.tinyIcon}
+            source={require("../assets/Checklist.png")}
+          ></Image>
         </TouchableOpacity>
         <TouchableOpacity style={styles.box} onPress={() => setVisible2(true)}>
           <Text style={styles.buttonText}>Call Random Student</Text>
+          <Image
+            style={styles.tinyIcon}
+            source={require("../assets/Hand.png")}
+          ></Image>
         </TouchableOpacity>
         <TouchableOpacity style={styles.box}>
-          <Text style={styles.buttonText}>Take Roll</Text>
+          <Text style={styles.buttonText}>Something Else</Text>
+          <Image
+            style={styles.tinyIcon}
+            source={require("../assets/Checklist.png")}
+          ></Image>
         </TouchableOpacity>
       </View>
       <TouchableWithoutFeedback>
@@ -257,10 +269,8 @@ const styles = StyleSheet.create({
   box: {
     width: W / 3,
     height: 100,
-    backgroundColor: "orange",
-    borderWidth: 2,
-    borderColor: "white",
-    borderRadius: 25,
+    justifyContent: "center",
+    alignItems: "center",
   },
   tinyDot: {
     width: 5,
@@ -282,7 +292,7 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: "center",
     alignItems: "center",
-    fontSize: 20,
+    fontSize: 12,
     fontWeight: "bold",
     justifyContent: "center",
     margin: 12,
@@ -328,6 +338,16 @@ const styles = StyleSheet.create({
     backgroundColor: "orange",
     alignItems: "center",
     justifyContent: "center",
+  },
+  tinyIcon: {
+    height: H * 0.05,
+    width: W * 0.1,
+  },
+  thinline: {
+    width: W,
+    height: 1,
+    backgroundColor: "grey",
+    top: H * 0.6,
   },
 });
 
