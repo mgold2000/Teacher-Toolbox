@@ -10,6 +10,7 @@ import {
   Modal,
   Animated,
   Dimensions,
+  FlatList,
 } from "react-native";
 import { useSelector } from "react-redux";
 import { globalStyles } from "../global";
@@ -44,7 +45,7 @@ const TakeRollPopUp = ({ visible, children }) => {
       <View style={styles.modalBackground}>
         <Animated.View
           style={[
-            styles.modalContainer,
+            globalStyles.container,
             { transform: [{ scale: scaleValue }] },
           ]}
         >
@@ -142,14 +143,74 @@ const RoomLayOutScreen = ({ navigation }) => {
   return (
     <View>
       <TakeRollPopUp visible={visible1}>
-        <View style={{ alignItems: "center" }}>
-          <View style={styles.header}></View>
-          <TouchableOpacity onPress={() => setVisible1(false)}>
-            <Text>
-              This will display a student picture and name. ALong with buttons
-              that say present or absent{" "}
-            </Text>
-          </TouchableOpacity>
+        <View
+          style={[
+            globalStyles.container,
+            {
+              // Try setting `flexDirection` to `"row"`.
+              flexDirection: "column",
+            },
+          ]}
+        >
+          <View style={[styles.box1, { flexDirection: "row" }]}>
+            <TouchableOpacity
+              style={{
+                poisiton: "absolute",
+                left: H / 4 + 20,
+                top: -129,
+              }}
+              onPress={() => setVisible1(false)}
+            >
+              <Text style={{ fontSize: 20 }}> x</Text>
+            </TouchableOpacity>
+
+            <View>
+              <View style={styles.photo}>
+                <Text>Photo</Text>
+              </View>
+              <Text style={{ fontSize: 30 }}>Student Name</Text>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  top: "15%",
+                  alignItems: "center",
+                }}
+              >
+                <TouchableOpacity
+                  style={{
+                    flex: 0.75,
+                    backgroundColor: "#ff7d7d",
+                    borderRadius: 16,
+                    width: "42%",
+                    height: "200%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    left: -7,
+                    padding: 10,
+                  }}
+                >
+                  <Text>Absent</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    flex: 0.75,
+                    backgroundColor: "#80e37b",
+                    borderRadius: 16,
+                    width: "60%",
+                    height: "200%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: 10,
+                    left: 7,
+                  }}
+                >
+                  <Text>Present</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
         </View>
       </TakeRollPopUp>
 
@@ -212,12 +273,43 @@ const RoomLayOutScreen = ({ navigation }) => {
         </View>
       </ChangeLayOutPopUp>
       <Text style={globalStyles.baseText}>Class {selectedData}</Text>
-      <Button
-        title="Go to Student Screen"
-        onPress={() =>
-          navigation.navigate("StudentScreen", { name: "StudentScreen" })
-        }
+
+      <FlatList
+        data={[
+          {
+            classID: "ClassID(Test)",
+            studentID: "StudentID (Test)",
+            studentName: "StudentName (Test)",
+            image_url: "Image URL HEre ",
+            grade: "Grade Here",
+            attendace: "Attendance Here",
+          },
+          {
+            classID: "ClassID(Test) 1",
+            studentID: "StudentID (Test) 1",
+            studentName: "StudentName (Test) 1",
+            image_url: "Image URL HEre 1 ",
+            grade: "Grade Here 1",
+            attendace: "Attendance Here 1",
+          },
+        ]}
+        renderItem={({ item }) => (
+          <View>
+            <Text>
+              <Button
+                title={item.studentID}
+                onPress={() =>
+                  navigation.navigate("StudentScreen", {
+                    name: "StudentScreen",
+                  })
+                }
+              />
+            </Text>
+          </View>
+        )}
+        keyExtractor={(item, classID) => classID.toString()}
       />
+
       <View style={styles.thinline}></View>
       <View
         style={{
