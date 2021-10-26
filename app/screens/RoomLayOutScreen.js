@@ -137,6 +137,7 @@ const ChangeLayOutPopUp = ({ visible, children }) => {
 const RoomLayOutScreen = ({ navigation }) => {
   //Sets the Title to ''
   const selectedData = useSelector((state) => state.reducer.classID);
+  const Students = useSelector((state) => state.StudentReducer.listOfStudents);
   const [visible1, setVisible1] = useState(false);
   const [visible2, setVisible2] = useState(false);
   const [visible3, setVisible3] = useState(false);
@@ -275,24 +276,7 @@ const RoomLayOutScreen = ({ navigation }) => {
       <Text style={globalStyles.baseText}>Class {selectedData}</Text>
 
       <FlatList
-        data={[
-          {
-            classID: "ClassID(Test)",
-            studentID: "StudentID (Test)",
-            studentName: "StudentName (Test)",
-            image_url: "Image URL HEre ",
-            grade: "Grade Here",
-            attendace: "Attendance Here",
-          },
-          {
-            classID: "ClassID(Test) 1",
-            studentID: "StudentID (Test) 1",
-            studentName: "StudentName (Test) 1",
-            image_url: "Image URL HEre 1 ",
-            grade: "Grade Here 1",
-            attendace: "Attendance Here 1",
-          },
-        ]}
+        data={Students}
         renderItem={({ item }) => (
           <View>
             <Text>
@@ -307,7 +291,7 @@ const RoomLayOutScreen = ({ navigation }) => {
             </Text>
           </View>
         )}
-        keyExtractor={(item, classID) => classID.toString()}
+        keyExtractor={(item, studentID) => studentID.toString()}
       />
 
       <View style={styles.thinline}></View>
@@ -439,7 +423,8 @@ const styles = StyleSheet.create({
     width: W,
     height: 1,
     backgroundColor: "grey",
-    top: H * 0.6,
+    top: H * 0.75,
+    position: "absolute",
   },
 });
 

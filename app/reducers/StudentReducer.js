@@ -1,12 +1,37 @@
 import { ADD_STUDENT, DELETE_STUDENT } from "../actions/types";
 
 const initialState = {
-  listOfStudents: [],
+  listOfStudents: [
+    {
+      classID: "ClassID(Test)",
+      studentID: "StudentID (Test)",
+      studentName: "StudentName (Test)",
+      image_url: "Image URL HEre ",
+      grade: "Grade Here",
+      attendace: "Attendance Here",
+    },
+    {
+      classID: "ClassID(Test) 1",
+      studentID: "StudentID (Test) 1",
+      studentName: "StudentName (Test) 1",
+      image_url: "Image URL HEre 1 ",
+      grade: "Grade Here 1",
+      attendace: "Attendance Here 1",
+    },
+    {
+      classID: "ClassID(Test) 2",
+      studentID: "StudentID (Test) 2",
+      studentName: "StudentName (Test) 1",
+      image_url: "Image URL HEre 1 ",
+      grade: "Grade Here 1",
+      attendace: "Attendance Here 1",
+    },
+  ],
 };
 
-const ClassReducer = (state = initialState, action) => {
+const StudentReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_CLASS:
+    case ADD_STUDENT:
       return {
         ...state,
         listOfStudents: state.listOfStudents.concat({
@@ -17,7 +42,7 @@ const ClassReducer = (state = initialState, action) => {
           image_url: require("../assets/Potluck.jpg"),
         }),
       };
-    case DELETE_CLASS:
+    case DELETE_STUDENT:
       return {
         ...state,
         listOfStudents: state.listOfStudents.filter(
@@ -29,4 +54,4 @@ const ClassReducer = (state = initialState, action) => {
   }
 };
 
-export default ClassReducer;
+export default StudentReducer;
