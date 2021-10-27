@@ -5,15 +5,15 @@ const initialState = {
     {
       classID: "ClassID(Test)",
       studentID: "StudentID (Test)",
-      studentName: "StudentName (Test)",
+      studentName: "Tuulikki Benedicte ",
       image_url: "Image URL HEre ",
       grade: "Grade Here",
       attendace: "Attendance Here",
     },
     {
       classID: "ClassID(Test) 1",
-      studentID: "StudentID (Test) 1",
-      studentName: "StudentName (Test) 1",
+      studentID: "StudentID (Test) 3",
+      studentName: "Kerstin Nikki",
       image_url: "Image URL HEre 1 ",
       grade: "Grade Here 1",
       attendace: "Attendance Here 1",
@@ -21,7 +21,7 @@ const initialState = {
     {
       classID: "ClassID(Test) 2",
       studentID: "StudentID (Test) 2",
-      studentName: "StudentName (Test) 1",
+      studentName: "Hai Marciano",
       image_url: "Image URL HEre 1 ",
       grade: "Grade Here 1",
       attendace: "Attendance Here 1",

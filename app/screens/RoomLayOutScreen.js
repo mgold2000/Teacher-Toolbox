@@ -17,6 +17,16 @@ import { globalStyles } from "../global";
 
 const W = Dimensions.get("window").width;
 const H = Dimensions.get("window").height;
+var randomInt = 0;
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+const changeRandomInt = (size) => {
+  randomInt = getRandomInt(0, size);
+};
 const TakeRollPopUp = ({ visible, children }) => {
   const [showModal, setShowModal] = useState(visible);
   const scaleValue = useRef(new Animated.Value(0)).current;
@@ -141,6 +151,7 @@ const RoomLayOutScreen = ({ navigation }) => {
   const [visible1, setVisible1] = useState(false);
   const [visible2, setVisible2] = useState(false);
   const [visible3, setVisible3] = useState(false);
+
   return (
     <View>
       <TakeRollPopUp visible={visible1}>
@@ -230,7 +241,9 @@ const RoomLayOutScreen = ({ navigation }) => {
               <View style={styles.photo}>
                 <Text>Photo</Text>
               </View>
-              <Text style={{ fontSize: 30 }}>Student Name</Text>
+              <Text style={{ fontSize: 30 }}>
+                {Students[randomInt].studentName}
+              </Text>
               <View
                 style={{
                   flexDirection: "row",
@@ -241,7 +254,10 @@ const RoomLayOutScreen = ({ navigation }) => {
                 <Button
                   title="Cancel"
                   color="#528282"
-                  onPress={() => setVisible2(false)}
+                  onPress={() => {
+                    setVisible2(false);
+                    changeRandomInt(Students.length);
+                  }}
                 />
               </View>
             </View>
@@ -281,7 +297,7 @@ const RoomLayOutScreen = ({ navigation }) => {
           <View>
             <Text>
               <Button
-                title={item.studentID}
+                title={item.studentName}
                 onPress={() =>
                   navigation.navigate("StudentScreen", {
                     name: "StudentScreen",
