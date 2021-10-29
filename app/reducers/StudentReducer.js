@@ -3,15 +3,15 @@ import { ADD_STUDENT, DELETE_STUDENT } from "../actions/types";
 const initialState = {
   listOfStudents: [
     {
-      classID: "ClassID(Test)",
-      studentID: "StudentID (Test)",
+      classID: "C2-1230",
+      studentID: "11257911",
       studentName: "Tuulikki Benedicte ",
-      image_url: "Image URL HEre ",
+      image_url: require("../assets/Potluck.jpg"),
       grade: "Grade Here",
       attendace: "Attendance Here",
     },
     {
-      classID: "ClassID(Test) 1",
+      classID: "C2-1234",
       studentID: "StudentID (Test) 3",
       studentName: "Kerstin Nikki",
       image_url: "Image URL HEre 1 ",
@@ -19,7 +19,7 @@ const initialState = {
       attendace: "Attendance Here 1",
     },
     {
-      classID: "ClassID(Test) 2",
+      classID: "C2-1233",
       studentID: "StudentID (Test) 2",
       studentName: "Hai Marciano",
       image_url: "Image URL HEre 1 ",

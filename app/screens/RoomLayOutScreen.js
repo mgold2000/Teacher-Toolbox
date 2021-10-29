@@ -151,6 +151,24 @@ const RoomLayOutScreen = ({ navigation }) => {
   const [visible1, setVisible1] = useState(false);
   const [visible2, setVisible2] = useState(false);
   const [visible3, setVisible3] = useState(false);
+  const renderStudent = (ID, name, sID, p) => {
+    if (selectedData === ID) {
+      return (
+        <Button
+          title={name}
+          onPress={() =>
+            navigation.navigate("StudentScreen", {
+              studentName: name,
+              classID: ID,
+              studentID: sID,
+              photo: p,
+            })
+          }
+        />
+      );
+    }
+    return false;
+  };
 
   return (
     <View>
@@ -295,16 +313,12 @@ const RoomLayOutScreen = ({ navigation }) => {
         data={Students}
         renderItem={({ item }) => (
           <View>
-            <Text>
-              <Button
-                title={item.studentName}
-                onPress={() =>
-                  navigation.navigate("StudentScreen", {
-                    name: "StudentScreen",
-                  })
-                }
-              />
-            </Text>
+            {renderStudent(
+              item.classID,
+              item.studentName,
+              item.studentID,
+              item.image_url
+            )}
           </View>
         )}
         keyExtractor={(item, studentID) => studentID.toString()}
