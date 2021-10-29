@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   Button,
+  Image,
   View,
   TouchableOpacity,
   Dimensions,
@@ -11,7 +12,10 @@ import { globalStyles } from "../global";
 
 const W = Dimensions.get("window").width;
 const H = Dimensions.get("window").height;
-const WelcomeScreen = (props) => {
+
+const StudentScreen = ({ route, navigation }) => {
+  const { studentName, classID, studentID, photo } = route.params;
+
   //Sets the Title to ''
   return (
     <View
@@ -25,20 +29,21 @@ const WelcomeScreen = (props) => {
     >
       <View style={[styles.box, { flexDirection: "row" }]}>
         <View>
-          <View style={styles.photo}>
-            <Text>Photo</Text>
-          </View>
-          <Text style={{ margin: 10 }}>Student Name</Text>
+          <Image
+            style={styles.photo}
+            source={require("../assets/StudentIcon.png")}
+          />
+          <Text style={{ margin: 10 }}>{studentName}</Text>
         </View>
         <View style={{ flex: 1, left: 50 }}>
           <Text style={{ fontSize: 20, fontWeight: "bold", paddingBottom: 2 }}>
             STUDENT ID
           </Text>
-          <Text style={{ paddingBottom: 15 }}>The Students name</Text>
+          <Text style={{ paddingBottom: 15 }}>{studentID}</Text>
           <Text style={{ fontSize: 20, fontWeight: "bold", paddingBottom: 2 }}>
             CLASS ID
           </Text>
-          <Text>The Students name</Text>
+          <Text>{classID}</Text>
         </View>
       </View>
       <TouchableOpacity style={styles.box1}>
@@ -84,8 +89,8 @@ const styles = StyleSheet.create({
     width: 140 * 0.8,
     borderRadius: (200 * 0.8) / 2,
     borderColor: "#d6d6d6",
-    backgroundColor: "orange",
-    alignItems: "center",
+    borderWidth: 5,
+    alignItems: "center ",
     justifyContent: "center",
     margin: 10,
   },
@@ -112,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WelcomeScreen;
+export default StudentScreen;
