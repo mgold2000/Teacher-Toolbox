@@ -8,15 +8,15 @@ const initialState = {
       studentName: "Tuulikki Benedicte ",
       image_url: require("../assets/Potluck.jpg"),
       grade: "Grade Here",
-      attendace: "Attendance Here",
+      attendace: "Present",
     },
     {
-      classID: "C2-1234",
+      classID: "C2-1230",
       studentID: "StudentID (Test) 3",
       studentName: "Kerstin Nikki",
       image_url: "Image URL HEre 1 ",
       grade: "Grade Here 1",
-      attendace: "Attendance Here 1",
+      attendace: "Present",
     },
     {
       classID: "C2-1233",
@@ -35,11 +35,11 @@ const StudentReducer = (state = initialState, action) => {
       return {
         ...state,
         listOfStudents: state.listOfStudents.concat({
-          classID: state.listOfStudents.length + 1,
-          classNum: "Class " + (state.listOfStudents.length + 1),
-          backgroundClr: "white",
-          title: "Class " + (state.listOfStudents.length + 1),
+          classID: "C2-1233",
+          studentID: "11223344",
+          studentName: "Generic Student Name",
           image_url: require("../assets/Potluck.jpg"),
+          attendacne: "Default Attendance ",
         }),
       };
     case DELETE_STUDENT:
