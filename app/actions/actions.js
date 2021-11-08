@@ -1,4 +1,10 @@
-import { CLICKED_ON_CLASS, ADD_CLASS, DELETE_CLASS } from "./types";
+import {
+  CLICKED_ON_CLASS,
+  ADD_CLASS,
+  DELETE_CLASS,
+  CHANGE_STUDENT_INDEX,
+  CHANGE_TAKEN_ROLL,
+} from "./types";
 
 export const clickedOnClass = (classID) => ({
   type: CLICKED_ON_CLASS,
@@ -18,5 +24,13 @@ export const addStudent = (stu) => ({
 });
 export const deleteStudent = (key) => ({
   type: DELETE_STUDENT,
+  key: key,
+});
+export const changeStudentIndex = (key) => ({
+  type: CHANGE_STUDENT_INDEX,
+  key: key,
+});
+export const changeTakenRoll = (key) => ({
+  type: CHANGE_TAKEN_ROLL,
   key: key,
 });

@@ -12,159 +12,28 @@ import {
   Dimensions,
   FlatList,
 } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../global";
+import { changeStudentIndex, changeTakenRoll } from "../actions/actions.js";
 
 const W = Dimensions.get("window").width;
 const H = Dimensions.get("window").height;
 var randomInt = 0;
-var currentStudentIndex = 0;
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function changeStudent(sizeOfStudents) {
-  console.log(sizeOfStudents);
-  if (currentStudentIndex == sizeOfStudents) {
-    return false;
-  } else {
-    currentStudentIndex++;
-  }
-}
-
-const TakeRollPopUp = ({ visible, children }) => {
-  const [showModal, setShowModal] = useState(visible);
-  const scaleValue = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    toggleModal();
-  }, [visible]);
-  const toggleModal = () => {
-    var classSize = 0;
-    for (var i = 0; i < Students.length; i++) {
-      if (Students[i].classID === selectedData) {
-        classSize++;
-      }
-    }
-    if (classSize + 1 === currentStudentIndex) {
-      setShowModal(false);
-    }
-    if (visible) {
-      setShowModal(true);
-      Animated.spring(scaleValue, {
-        toValue: 1,
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
-    } else {
-      setTimeout(() => setShowModal(false), 200);
-      Animated.timing(scaleValue, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
-    }
-  };
-  return (
-    <Modal transparent visible={showModal}>
-      <View style={styles.modalBackground}>
-        <Animated.View
-          style={[
-            globalStyles.container,
-            { transform: [{ scale: scaleValue }] },
-          ]}
-        >
-          {children}
-        </Animated.View>
-      </View>
-    </Modal>
-  );
-};
-
-const RandomStudentPopUp = ({ visible, children }) => {
-  const [showModal, setShowModal] = useState(visible);
-  const scaleValue = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    toggleModal();
-  }, [visible]);
-  const toggleModal = () => {
-    if (visible) {
-      setShowModal(true);
-      Animated.spring(scaleValue, {
-        toValue: 1,
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
-    } else {
-      setTimeout(() => setShowModal(false), 200);
-      Animated.timing(scaleValue, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
-    }
-  };
-  return (
-    <Modal transparent visible={showModal}>
-      <View style={styles.modalBackground}>
-        <Animated.View
-          style={[
-            globalStyles.container,
-            { transform: [{ scale: scaleValue }] },
-          ]}
-        >
-          {children}
-        </Animated.View>
-      </View>
-    </Modal>
-  );
-};
-
-const ChangeLayOutPopUp = ({ visible, children }) => {
-  const [showModal, setShowModal] = useState(visible);
-  const scaleValue = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    toggleModal();
-  }, [visible]);
-  const toggleModal = () => {
-    if (visible) {
-      setShowModal(true);
-      Animated.spring(scaleValue, {
-        toValue: 1,
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
-    } else {
-      setTimeout(() => setShowModal(false), 200);
-      Animated.timing(scaleValue, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: true,
-      }).start();
-    }
-  };
-  return (
-    <Modal transparent visible={showModal}>
-      <View style={styles.modalBackground}>
-        <Animated.View
-          style={[
-            styles.modalContainer,
-            { transform: [{ scale: scaleValue }] },
-          ]}
-        >
-          {children}
-        </Animated.View>
-      </View>
-    </Modal>
-  );
-};
-
 const RoomLayOutScreen = ({ navigation }) => {
   //Sets the Title to ''
   const selectedData = useSelector((state) => state.reducer.classID);
+  const dispatch = useDispatch();
   const Students = useSelector((state) => state.StudentReducer.listOfStudents);
-  var takenRole = false;
+  const currentStudent = useSelector(
+    (state) => state.ClassReducer.currentStudentIndex
+  );
+  const takenRoll = useSelector((state) => state.ClassReducer.takenRoll);
   const [visible1, setVisible1] = useState(false);
   const [visible2, setVisible2] = useState(false);
   const [visible3, setVisible3] = useState(false);
@@ -187,16 +56,16 @@ const RoomLayOutScreen = ({ navigation }) => {
         classSize++;
       }
     }
-    console.log(classSize);
-    if (currentStudentIndex + 1 == classSize) {
+
+    if (currentStudent + 1 == classSize) {
+      dispatch(changeTakenRoll(0));
       setVisible1(false);
-      takenRole = true;
-    } else {
-      for (var i = currentStudentIndex + 1; i < Students.length; i++) {
-        if (Students[i].classID === selectedData) {
-          currentStudentIndex = i;
-          break;
-        }
+    }
+
+    for (var i = currentStudent + 1; i < Students.length; i++) {
+      if (Students[i].classID == selectedData) {
+        dispatch(changeStudentIndex(i));
+        break;
       }
     }
   };
@@ -209,15 +78,40 @@ const RoomLayOutScreen = ({ navigation }) => {
       toggleModal();
     }, [visible]);
     const toggleModal = () => {
-      var classSize = 0;
-      for (var i = 0; i < Students.length; i++) {
-        if (Students[i].classID === selectedData) {
-          classSize++;
-        }
+      if (visible) {
+        setShowModal(true);
+        Animated.spring(scaleValue, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+        }).start();
+      } else {
+        setTimeout(() => setShowModal(false), 200);
+        Animated.timing(scaleValue, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }).start();
       }
-      if (classSize - 1 === currentStudentIndex) {
-        setShowModal(false);
-      }
+    };
+    return (
+      <Modal transparent visible={showModal}>
+        <View style={styles.modalBackground}>
+          <Animated.View style={[{ transform: [{ scale: scaleValue }] }]}>
+            {children}
+          </Animated.View>
+        </View>
+      </Modal>
+    );
+  };
+
+  const RandomStudentPopUp = ({ visible, children }) => {
+    const [showModal, setShowModal] = useState(visible);
+    const scaleValue = useRef(new Animated.Value(0)).current;
+    useEffect(() => {
+      toggleModal();
+    }, [visible]);
+    const toggleModal = () => {
       if (visible) {
         setShowModal(true);
         Animated.spring(scaleValue, {
@@ -250,6 +144,46 @@ const RoomLayOutScreen = ({ navigation }) => {
     );
   };
 
+  //This is the pop up for the top three
+  const ChangeLayOutPopUp = ({ visible, children }) => {
+    const [showModal, setShowModal] = useState(visible);
+    const scaleValue = useRef(new Animated.Value(0)).current;
+    useEffect(() => {
+      toggleModal();
+    }, [visible]);
+    const toggleModal = () => {
+      if (visible) {
+        setShowModal(true);
+        Animated.spring(scaleValue, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+        }).start();
+      } else {
+        setTimeout(() => setShowModal(false), 200);
+        Animated.timing(scaleValue, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }).start();
+      }
+    };
+    return (
+      <Modal transparent visible={showModal}>
+        <View style={styles.modalBackground}>
+          <Animated.View
+            style={[
+              styles.modalContainer,
+              { transform: [{ scale: scaleValue }] },
+            ]}
+          >
+            {children}
+          </Animated.View>
+        </View>
+      </Modal>
+    );
+  };
+
   //This renders the student as a button
   const renderStudent = (ID, name, sID, p) => {
     if (selectedData === ID) {
@@ -270,88 +204,126 @@ const RoomLayOutScreen = ({ navigation }) => {
     return false;
   };
 
-  return (
-    <View>
-      <TakeRollPopUp visible={visible1}>
-        <View
-          style={[
-            globalStyles.container,
-            {
-              // Try setting `flexDirection` to `"row"`.
-              flexDirection: "column",
-            },
-          ]}
-        >
-          <View style={[styles.box1, { flexDirection: "row" }]}>
-            <TouchableOpacity
-              style={{
-                poisiton: "absolute",
-                left: H / 4 + 20,
-                top: -129,
-              }}
-              onPress={() => setVisible1(false)}
-            >
-              <Text style={{ fontSize: 20 }}> x</Text>
-            </TouchableOpacity>
-
-            <View>
-              <Image
-                style={styles.photo}
-                source={require("../assets/StudentIcon.png")}
-              />
-              <Text style={{ fontSize: 30 }}>
-                {Students[currentStudentIndex].studentName}
-              </Text>
-              <View
+  const renderTakeRoll = (t) => {
+    if (t === 1) {
+      return (
+        <TakeRollPopUp visible={visible1}>
+          <View
+            style={[
+              globalStyles.container,
+              {
+                // Try setting `flexDirection` to `"row"`.
+                flexDirection: "column",
+              },
+            ]}
+          >
+            <View style={[styles.box1, { flexDirection: "row" }]}>
+              <TouchableOpacity
                 style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  top: "15%",
-                  alignItems: "center",
+                  poisiton: "absolute",
+                  left: H / 4 + 20,
+                  top: -129,
                 }}
+                onPress={() => setVisible1(false)}
               >
-                <TouchableOpacity
+                <Text style={{ fontSize: 20 }}> x</Text>
+              </TouchableOpacity>
+
+              <View>
+                <Image
+                  style={styles.photo}
+                  source={require("../assets/StudentIcon.png")}
+                />
+                <Text style={{ fontSize: 30 }}>
+                  {Students[currentStudent].studentName}
+                </Text>
+                <View
                   style={{
-                    flex: 0.75,
-                    backgroundColor: "#ff7d7d",
-                    borderRadius: 16,
-                    width: "42%",
-                    height: "200%",
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    top: "15%",
                     alignItems: "center",
-                    justifyContent: "center",
-                    left: -7,
-                    padding: 10,
-                  }}
-                  onPress={() => {
-                    changeStudent();
                   }}
                 >
-                  <Text>Absent</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={{
-                    flex: 0.75,
-                    backgroundColor: "#80e37b",
-                    borderRadius: 16,
-                    width: "60%",
-                    height: "200%",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: 10,
-                    left: 7,
-                  }}
-                  onPress={() => {
-                    changeStudent();
-                  }}
-                >
-                  <Text>Present</Text>
-                </TouchableOpacity>
+                  <TouchableOpacity
+                    style={{
+                      flex: 0.75,
+                      backgroundColor: "#ff7d7d",
+                      borderRadius: 16,
+                      width: "42%",
+                      height: "200%",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      left: -7,
+                      padding: 10,
+                    }}
+                    onPress={() => {
+                      changeStudent();
+                    }}
+                  >
+                    <Text>Absent</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={{
+                      flex: 0.75,
+                      backgroundColor: "#80e37b",
+                      borderRadius: 16,
+                      width: "60%",
+                      height: "200%",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: 10,
+                      left: 7,
+                    }}
+                    onPress={() => {
+                      changeStudent();
+                    }}
+                  >
+                    <Text>Present</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </View>
           </View>
-        </View>
-      </TakeRollPopUp>
+        </TakeRollPopUp>
+      );
+    } else {
+      return (
+        <TakeRollPopUp visible={visible1}>
+          <View
+            style={[
+              globalStyles.container,
+              {
+                flexDirection: "column",
+              },
+            ]}
+          >
+            <View style={[{ flexDirection: "row" }]}>
+              <TouchableOpacity
+                style={{
+                  poisiton: "absolute",
+                  left: H / 4 + 70,
+                  top: -129,
+                }}
+                onPress={() => setVisible1(false)}
+              >
+                <Text style={{ fontSize: 20 }}> x</Text>
+              </TouchableOpacity>
+
+              <View>
+                <Text style={{ fontSize: 30 }}>Already Taken Roll</Text>
+              </View>
+            </View>
+          </View>
+        </TakeRollPopUp>
+      );
+    }
+  };
+
+  return (
+    <View>
+      {renderTakeRoll(takenRoll)}
 
       <RandomStudentPopUp visible={visible2}>
         <View
@@ -521,7 +493,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalContainer: {
-    width: "80%",
+    width: "90%",
     backgroundColor: "white",
     paddingHorizontal: 20,
     paddingVertical: 30,

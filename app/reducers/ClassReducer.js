@@ -1,4 +1,9 @@
-import { ADD_CLASS, DELETE_CLASS } from "../actions/types";
+import {
+  ADD_CLASS,
+  DELETE_CLASS,
+  CHANGE_STUDENT_INDEX,
+  CHANGE_TAKEN_ROLL,
+} from "../actions/types";
 
 const initialState = {
   listOfClasses: [
@@ -10,6 +15,8 @@ const initialState = {
       image_url: require("../assets/Potluck.jpg"),
     },
   ],
+  currentStudentIndex: 0,
+  takenRoll: 1,
 };
 
 const ClassReducer = (state = initialState, action) => {
@@ -31,6 +38,16 @@ const ClassReducer = (state = initialState, action) => {
         listOfClasses: state.listOfClasses.filter(
           (item) => item.key !== action.key
         ),
+      };
+    case CHANGE_STUDENT_INDEX:
+      return {
+        ...state,
+        currentStudentIndex: action.key,
+      };
+    case CHANGE_TAKEN_ROLL:
+      return {
+        ...state,
+        takenRoll: action.key,
       };
     default:
       return state;
