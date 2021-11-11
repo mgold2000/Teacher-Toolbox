@@ -97,7 +97,12 @@ const RoomLayOutScreen = ({ navigation }) => {
     return (
       <Modal transparent visible={showModal}>
         <View style={styles.modalBackground}>
-          <Animated.View style={[{ transform: [{ scale: scaleValue }] }]}>
+          <Animated.View
+            style={[
+              globalStyles.container,
+              { transform: [{ scale: scaleValue }] },
+            ]}
+          >
             {children}
           </Animated.View>
         </View>
@@ -299,7 +304,7 @@ const RoomLayOutScreen = ({ navigation }) => {
               },
             ]}
           >
-            <View style={[{ flexDirection: "row" }]}>
+            <View style={[styles.box1, { flexDirection: "row" }]}>
               <TouchableOpacity
                 style={{
                   poisiton: "absolute",
@@ -493,7 +498,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalContainer: {
-    width: "90%",
+    width: "80%",
     backgroundColor: "white",
     paddingHorizontal: 20,
     paddingVertical: 30,

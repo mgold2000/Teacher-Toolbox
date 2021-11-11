@@ -12,7 +12,7 @@ const initialState = {
       className: "Class Name 1",
       backgroundClr: "white",
       title: "Class " + "1",
-      image_url: require("../assets/Potluck.jpg"),
+      image_url: require("../assets/Class.png"),
     },
   ],
   currentStudentIndex: 0,
@@ -29,7 +29,7 @@ const ClassReducer = (state = initialState, action) => {
           className: "Class " + (state.listOfClasses.length + 1),
           backgroundClr: "white",
           title: "Class " + (state.listOfClasses.length + 1),
-          image_url: require("../assets/Potluck.jpg"),
+          image_url: require("../assets/Class.png"),
         }),
       };
     case DELETE_CLASS:

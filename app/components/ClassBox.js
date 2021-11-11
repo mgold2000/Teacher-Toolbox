@@ -192,9 +192,10 @@ const styles = StyleSheet.create({
     width: ITEM_HEIGHT * 0.8,
     position: "absolute",
     borderRadius: 10,
+    borderWidth: 2,
     marginLeft: ITEM_HEIGHT * 0.08,
     marginTop: ITEM_HEIGHT * 0.1,
-    borderColor: "#d6d6d6",
+    borderColor: "black",
   },
   leftBox: {
     right: 0,
