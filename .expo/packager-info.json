@@ -1,22 +1,8 @@
 {
-  "devToolsPort": 19002,
-<<<<<<< HEAD
-  "expoServerPort": null,
-  "packagerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-=======
-  "expoServerPort": 19000,
-  "packagerPort": 19000,
-  "expoServerNgrokUrl": "https://rj-ip3.hadenbennett444.capstone-teacher-toolbox.exp.direct",
-  "packagerNgrokUrl": "https://packager.rj-ip3.hadenbennett444.capstone-teacher-toolbox.exp.direct",
-<<<<<<< HEAD
-  "ngrokPid": 1639,
-=======
-  "ngrokPid": 31015,
->>>>>>> 3ee558b31dae1d1da4156d0f5b6e4c75f45f6387
->>>>>>> 46b7ea9b9a9c872c1fd4a0331423578faef5594d
-  "packagerPid": null,
-  "webpackServerPort": null
+  "devToolsPort": 19004,
+  "expoServerPort": 19002,
+  "packagerPort": 19002,
+  "expoServerNgrokUrl": "https://rj-ip3.mgold2000.repos2.exp.direct",
+  "packagerNgrokUrl": "https://packager.rj-ip3.mgold2000.repos2.exp.direct",
+  "ngrokPid": 14108
 }
