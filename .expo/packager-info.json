@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19000,
-  "expoServerNgrokUrl": "https://rj-ip3.hadenbennett444.capstone-teacher-toolbox.exp.direct",
-  "packagerNgrokUrl": "https://packager.rj-ip3.hadenbennett444.capstone-teacher-toolbox.exp.direct",
-  "ngrokPid": 28192,
+  "expoServerNgrokUrl": "https://rj-ip3.mgold2000.capstone-teacher-toolbox.exp.direct",
+  "packagerNgrokUrl": "https://packager.rj-ip3.mgold2000.capstone-teacher-toolbox.exp.direct",
+  "ngrokPid": 23144,
   "packagerPid": null,
   "webpackServerPort": null
 }
