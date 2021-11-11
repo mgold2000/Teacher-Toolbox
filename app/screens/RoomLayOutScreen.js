@@ -1,4 +1,4 @@
-import React, { useEffect, userContext, useState, useRef } from "react";
+import React, { Component, useEffect, userContext, useState, useRef } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,14 +7,17 @@ import {
   Image,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  TextInput,
   Modal,
   Animated,
+  Alert,
   Dimensions,
   FlatList,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../global";
 import { changeStudentIndex, changeTakenRoll } from "../actions/actions.js";
+import { ADD_STUDENT } from "../actions/types";
 
 const W = Dimensions.get("window").width;
 const H = Dimensions.get("window").height;
@@ -37,6 +40,7 @@ const RoomLayOutScreen = ({ navigation }) => {
   const [visible1, setVisible1] = useState(false);
   const [visible2, setVisible2] = useState(false);
   const [visible3, setVisible3] = useState(false);
+  const [visible4, setVisible4] = useState(false);
 
   //This function changes the random Integer for the random student
   const changeRandomInt = (size) => {
@@ -97,7 +101,12 @@ const RoomLayOutScreen = ({ navigation }) => {
     return (
       <Modal transparent visible={showModal}>
         <View style={styles.modalBackground}>
-          <Animated.View style={[{ transform: [{ scale: scaleValue }] }]}>
+          <Animated.View
+            style={[
+              globalStyles.container,
+              { transform: [{ scale: scaleValue }] },
+            ]}
+          >
             {children}
           </Animated.View>
         </View>
@@ -134,6 +143,45 @@ const RoomLayOutScreen = ({ navigation }) => {
           <Animated.View
             style={[
               globalStyles.container,
+              { transform: [{ scale: scaleValue }] },
+            ]}
+          >
+            {children}
+          </Animated.View>
+        </View>
+      </Modal>
+    );
+  };
+
+  const AddStudentPopUp = ({ visible, children }) => {
+    const [showModal, setShowModal] = useState(visible);
+    const scaleValue = useRef(new Animated.Value(0)).current;
+    useEffect(() => {
+      toggleModal();
+    }, [visible]);
+    const toggleModal = () => {
+      if (visible) {
+        setShowModal(true);
+        Animated.spring(scaleValue, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+        }).start();
+      } else {
+        setTimeout(() => setShowModal(false), 200);
+        Animated.timing(scaleValue, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }).start();
+      }
+    };
+    return (
+      <Modal transparent visible={showModal}>
+        <View style={styles.modalBackground}>
+          <Animated.View
+            style={[
+              styles.modalContainer,
               { transform: [{ scale: scaleValue }] },
             ]}
           >
@@ -299,7 +347,7 @@ const RoomLayOutScreen = ({ navigation }) => {
               },
             ]}
           >
-            <View style={[{ flexDirection: "row" }]}>
+            <View style={[styles.box1, { flexDirection: "row" }]}>
               <TouchableOpacity
                 style={{
                   poisiton: "absolute",
@@ -364,12 +412,12 @@ const RoomLayOutScreen = ({ navigation }) => {
         </View>
       </RandomStudentPopUp>
 
-      <ChangeLayOutPopUp visible={visible3}>
+      <AddStudentPopUp visible={visible3}>
         <View style={{ alignItems: "center" }}>
           <View style={styles.header}></View>
           <View>
             <Text style={styles.modalText}>
-              Do you wish to make changes to the Room Layout?
+              Would you like to add a student?
             </Text>
             <View
               style={{
@@ -383,10 +431,39 @@ const RoomLayOutScreen = ({ navigation }) => {
                 color="#528282"
                 onPress={() => setVisible3(false)}
               />
-              <Button title="Confirm" 
-              onPress={() =>
-                navigation.navigate("ModRoomLayOutScreen", { name: "ModRoomLayOutScreen" })
-              }
+              <Button
+                title="Confirm"
+                //onPress={() => setVisible3(false)}
+                onPress={() => ADD_STUDENT}
+              />
+            </View>
+          </View>
+        </View>
+      </AddStudentPopUp>
+
+      <ChangeLayOutPopUp visible={visible4}>
+        <View style={{ alignItems: "center" }}>
+          <View style={styles.header}></View>
+          <View>
+            <Text style={styles.modalText}>
+              Do you wish to make changes to the Room Lay Out?
+            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "center",
+                top: "4%",
+              }}
+            >
+              <Button
+                title="Cancel"
+                color="#528282"
+                onPress={() => setVisible4(false)}
+              />
+              <Button title="Confirm"
+                onPress={() =>
+                  navigation.navigate("ModRoomLayOutScreen", { name: "ModRoomLayOutScreen" })
+                }
               />
             </View>
           </View>
@@ -434,8 +511,8 @@ const RoomLayOutScreen = ({ navigation }) => {
             source={require("../assets/Hand.png")}
           ></Image>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.box}>
-          <Text style={styles.buttonText}>Something Else</Text>
+        <TouchableOpacity style={styles.box} onPress={() => setVisible3(true)}>
+          <Text style={styles.buttonText}>Add Student</Text>
           <Image
             style={styles.tinyIcon}
             source={require("../assets/Checklist.png")}
@@ -445,7 +522,7 @@ const RoomLayOutScreen = ({ navigation }) => {
       <TouchableWithoutFeedback>
         <TouchableOpacity
           style={styles.leftBox}
-          onPress={() => setVisible3(true)}
+          onPress={() => setVisible4(true)}
         >
           <View style={styles.tinyDot}></View>
           <View style={styles.tinyDot}></View>
@@ -497,7 +574,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalContainer: {
-    width: "90%",
+    width: "80%",
     backgroundColor: "white",
     paddingHorizontal: 20,
     paddingVertical: 30,

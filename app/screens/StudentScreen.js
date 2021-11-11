@@ -43,13 +43,14 @@ const StudentScreen = ({ route, navigation }) => {
           <Text style={{ fontSize: 20, fontWeight: "bold", paddingBottom: 2 }}>
             CLASS ID
           </Text>
-          <Text>{classID}</Text>
+          <Text style={{ paddingBottom: 15 }}>{classID}</Text>
+          <Text style={{ fontSize: 20, fontWeight: "bold", paddingBottom: 2 }}>
+            LETTER GRADE
+          </Text>
+          <Text>A</Text>
         </View>
       </View>
-      <TouchableOpacity style={styles.box1}>
-        <Text style={styles.titleText}>View Grades </Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.box1}>
+      <TouchableOpacity style={[styles.box1, { justifyContent: "center" }]}>
         <Text style={styles.titleText}>View Attendance </Text>
       </TouchableOpacity>
     </View>
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   box: {
-    flex: 0.25,
+    flex: 0.3,
     backgroundColor: 10,
     padding: 10,
     borderColor: 12,
@@ -114,6 +115,11 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     alignItems: "center",
     justifyContent: "flex-start",
+  },
+  titleText: {
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 20,
   },
 });
 
