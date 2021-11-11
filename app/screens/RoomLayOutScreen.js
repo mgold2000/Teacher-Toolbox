@@ -412,7 +412,7 @@ const RoomLayOutScreen = ({ navigation }) => {
         </View>
       </RandomStudentPopUp>
 
-     <AddStudentPopUp visible={visible3}>
+      <AddStudentPopUp visible={visible3}>
         <View style={{ alignItems: "center" }}>
           <View style={styles.header}></View>
           <View>
@@ -439,7 +439,7 @@ const RoomLayOutScreen = ({ navigation }) => {
             </View>
           </View>
         </View>
-     </AddStudentPopUp>
+      </AddStudentPopUp>
 
       <ChangeLayOutPopUp visible={visible4}>
         <View style={{ alignItems: "center" }}>
@@ -460,7 +460,11 @@ const RoomLayOutScreen = ({ navigation }) => {
                 color="#528282"
                 onPress={() => setVisible4(false)}
               />
-              <Button title="Confirm" />
+              <Button title="Confirm"
+                onPress={() =>
+                  navigation.navigate("ModRoomLayOutScreen", { name: "ModRoomLayOutScreen" })
+                }
+              />
             </View>
           </View>
         </View>

@@ -13,13 +13,22 @@
     "expo": "~42.0.1",
     "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
+    "bootstrap": "^4.6.0",
+    "react-bootstrap": "^1.4.3",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
+<<<<<<< HEAD
+    "react-native-web": "^0.17.5",
+    "react-redux": "^7.2.5",
+    "redux": "^4.1.1"
+=======
     "react-native-web": "~0.13.12",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2"
+>>>>>>> 3ee558b31dae1d1da4156d0f5b6e4c75f45f6387
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
