@@ -369,7 +369,7 @@ const RoomLayOutScreen = ({ navigation }) => {
           <View style={styles.header}></View>
           <View>
             <Text style={styles.modalText}>
-              Do you fish to make changes to the Room Lay Out?
+              Do you wish to make changes to the Room Layout?
             </Text>
             <View
               style={{
@@ -383,7 +383,11 @@ const RoomLayOutScreen = ({ navigation }) => {
                 color="#528282"
                 onPress={() => setVisible3(false)}
               />
-              <Button title="Confim" />
+              <Button title="Confirm" 
+              onPress={() =>
+                navigation.navigate("ModRoomLayOutScreen", { name: "ModRoomLayOutScreen" })
+              }
+              />
             </View>
           </View>
         </View>
