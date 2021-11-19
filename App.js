@@ -14,29 +14,41 @@ import ClassBox from "./app/components/ClassBox";
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import configureStore from './app/store';
+import { StyleSheet } from "react-native";
+
 
 const Store = configureStore();
 
 const Stack = createNativeStackNavigator();
 
 
-export default App = () => (
-  <Provider store={Store}>
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="LogInScreen" component={LogInScreen}/>
-        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="ClassScreen" component={ClassScreen} />
-        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="AssignmentListScreen" component={AssignmentListScreen} />
-        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="ClassGradeScreen" component={ClassGradeScreen} />
-        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="CreateAssignmentScreen" component={CreateAssignmentScreen} />
-        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="RoomLayOutScreen" component={RoomLayOutScreen} />
-        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="SideBarScreen" component={SideBarScreen} />
-        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="StudentScreen" component={StudentScreen} />
-        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="TakingRollScreen" component={TakingRollScreen} />
-        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="ClassList" component={ClassList} />
-        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="ClassBox" component={ClassBox} />
-      </Stack.Navigator>
-    </NavigationContainer>
+export default App = () => {
+  
+  return (
+    <Provider store={Store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen title="" style={styles.headerStyle} name="LogInScreen" component={LogInScreen} />
+          <Stack.Screen title="" style={styles.headerStyle} name="ClassScreen" component={ClassScreen} />
+          <Stack.Screen title="" style={styles.headerStyle} name="AssignmentListScreen" component={AssignmentListScreen} />
+          <Stack.Screen title="" style={styles.headerStyle} name="ClassGradeScreen" component={ClassGradeScreen} />
+          <Stack.Screen title="" style={styles.headerStyle} name="CreateAssignmentScreen" component={CreateAssignmentScreen} />
+          <Stack.Screen title="" style={styles.headerStyle} name="RoomLayOutScreen" component={RoomLayOutScreen} />
+          <Stack.Screen title="" style={styles.headerStyle} name="SideBarScreen" component={SideBarScreen} />
+          <Stack.Screen title="" style={styles.headerStyle} name="StudentScreen" component={StudentScreen} />
+          <Stack.Screen title="" style={styles.headerStyle} name="TakingRollScreen" component={TakingRollScreen} />
+          <Stack.Screen title="" style={styles.headerStyle} name="ClassList" component={ClassList} />
+          <Stack.Screen title="" style={styles.headerStyle} name="ClassBox" component={ClassBox} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
 
-);
+
+  );
+};
+
+const styles = StyleSheet.create({
+  headerStyle: {
+    backgroundColor: '#545454'
+  }
+});
