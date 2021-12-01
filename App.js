@@ -5,6 +5,7 @@ import AssignmentListScreen from "./app/screens/AssignmentListScreen";
 import ClassGradeScreen from "./app/screens/ClassGradeScreen";
 import ClassScreen from "./app/screens/ClassScreen";
 import CreateAssignmentScreen from "./app/screens/CreateAssignmentScreen";
+import ModRoomLayOutScreen from "./app/screens/ModRoomLayOutScreen";
 import RoomLayOutScreen from "./app/screens/RoomLayOutScreen";
 import SideBarScreen from "./app/screens/SideBarScreen";
 import StudentScreen from "./app/screens/StudentScreen";
@@ -29,6 +30,7 @@ export default App = () => (
         <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="AssignmentListScreen" component={AssignmentListScreen} />
         <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="ClassGradeScreen" component={ClassGradeScreen} />
         <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="CreateAssignmentScreen" component={CreateAssignmentScreen} />
+        <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="ModRoomLayOutScreen" component={ModRoomLayOutScreen} />
         <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="RoomLayOutScreen" component={RoomLayOutScreen} />
         <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="SideBarScreen" component={SideBarScreen} />
         <Stack.Screen options={{title: '', headerStyle:{ backgroundColor: '#545454'}}} name="StudentScreen" component={StudentScreen} />

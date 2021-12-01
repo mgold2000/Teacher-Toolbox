@@ -462,7 +462,8 @@ const RoomLayOutScreen = ({ navigation }) => {
               />
               <Button title="Confirm"
                 onPress={() =>
-                  navigation.navigate("ModRoomLayOutScreen", { name: "ModRoomLayOutScreen" })
+                  navigation.navigate("ModRoomLayOutScreen", { name: "ModRoomLayOutScreen" },
+                  setVisible4(false))
                 }
               />
             </View>
