@@ -13,6 +13,8 @@ import { clickedOnClass } from "../actions/actions.js";
 import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../global";
+//import {Container, Row, Col, Card, Button} from 'react-bootstrap';
+//import {DragDropContext} from 'react-beautiful-dnd';
 
 const StudentBox = (props) => {
   return <View></View>;
