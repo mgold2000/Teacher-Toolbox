@@ -14,6 +14,13 @@ const initialState = {
       title: "Class " + "1",
       image_url: require("../assets/Class.png"),
     },
+    {
+      classID: "C2-1233",
+      className: "Class Name 2",
+      backgroundClr: "white",
+      title: "Class " + "2",
+      image_url: require("../assets/Class.png"),
+    },
   ],
   currentStudentIndex: 0,
   takenRoll: 1,

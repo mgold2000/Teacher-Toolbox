@@ -99,7 +99,10 @@ const ClassBox = (props) => {
                 color="#528282"
                 onPress={() => setVisible1(false)}
               />
-              <Button title="Confim" />
+              <Button title="Confirm" 
+                onPress={() => setVisible1(false)}
+                //onPress={() => remove()}
+              />
             </View>
           </View>
         </View>

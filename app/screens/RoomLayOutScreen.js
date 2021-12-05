@@ -19,6 +19,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../global";
 import { changeStudentIndex, changeTakenRoll } from "../actions/actions.js";
 import { ADD_STUDENT } from "../actions/types";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const W = Dimensions.get("window").width;
 const H = Dimensions.get("window").height;
@@ -29,9 +31,10 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-
+///Users/tfausak/Documents/Capstone-Teacher-Toolbox/App.js
 //formatting the flatlist
 const formatData = (data, numColumns) => {
+  if(data){
   const numberOfFullRows = Math.floor(data.length / numColumns);
 
   let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
@@ -39,12 +42,32 @@ const formatData = (data, numColumns) => {
     data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
     numberOfElementsLastRow = numberOfElementsLastRow + 1;
   }
-
+  }
   return data;
 }
 
 
 const RoomLayOutScreen = ({ navigation }) => {
+  const [students2, setStudents2] = useState();
+  const load = async () => {
+    setStudents2([{
+    }])
+    try {
+      let jsonValue = await AsyncStorage.getItem("MyName")
+
+      if (jsonValue !== null) {
+        setStudents2(JSON.parse(jsonValue))
+      }
+    } catch (err) {
+      alert(err);
+    }
+  }
+  useEffect(() => {
+    load();
+  }, []);
+
+
+
   //Sets the Title to ''
   const selectedData = useSelector((state) => state.reducer.classID);
   const dispatch = useDispatch();
@@ -455,9 +478,9 @@ const RoomLayOutScreen = ({ navigation }) => {
               <Button
                 title="Confirm"
                 //onPress={() => setVisible3(false)}
-                onPress={() => 
-                navigation.navigate("AddStudentScreen", { name: "AddStudentScreen" },
-                setVisible3(false))}
+                onPress={() =>
+                  navigation.navigate("AddStudentScreen", { name: "AddStudentScreen" },
+                    setVisible3(false))}
               />
             </View>
           </View>
@@ -518,7 +541,28 @@ const RoomLayOutScreen = ({ navigation }) => {
 
         keyExtractor={(item, studentID) => studentID.toString()}
       />
+      <FlatList
+        data={students2}
+        numColumns={3}
+        renderItem={({ item, index }) => (
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'column',
+              margin: 1
+            }}>
+            {renderStudent(
+              item.classID,
+              item.studentName,
+              item.studentID,
+              item.image_url,
+              item.seatID
+            )}
+          </View>
+        )}
 
+        keyExtractor={(item, studentID) => studentID.toString()}
+      />
       <View style={styles.thinline}></View>
       <View
         style={{

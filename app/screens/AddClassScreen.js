@@ -9,38 +9,30 @@ import { ScrollView } from 'react-native-gesture-handler';
 export default function App() {
     const [name, setName] = useState();
     const [user, setUser] = useState();
-    const [students, setStudents] = useState();
+    
     const [classID, setClassID] = useState();
-    const [studentID, setStudentID] = useState();
-    const [studentName, setStudentName] = useState();
-    const [image_url, setImage_url] = useState();
-    const [grade, setGrade] = useState();
-    const [attendace, setAttendace] = useState();
-    const [seatID, setSeatID] = useState();
-
-    const [students2, setStudents2] = useState();
+    const [className, setClassName] = useState();
+    const [title, setTitle] = useState();
 
 
     const save = async () => {
         try {
             //await AsyncStorage.clear()
-            if(user === undefined){
+            if (user === undefined) {
                 setUser([])
             }
 
             let temp = {
-              classID: classID,
-              studentID: studentID,
-              studentName: studentName,
-              image_url: "Image URL Here 1 ",
-              grade: "Grade Here",
-              attendace: "Present",
-              seatID: seatID,
+                classID: classID,
+                className: className,
+                backgroundClr: "white",
+                title: title,
+                image_url: require("../assets/Class.png"),
             };
 
             user.push(temp);
 
-            await AsyncStorage.setItem("MyName", JSON.stringify(user));
+            await AsyncStorage.setItem("MyClass", JSON.stringify(user));
 
 
         } catch (err) {
@@ -53,7 +45,7 @@ export default function App() {
     const load = async () => {
         try {
             setUser([])
-            let jsonValue = await AsyncStorage.getItem("MyName")
+            let jsonValue = await AsyncStorage.getItem("MyClass")
 
             if (jsonValue !== null) {
                 setName(jsonValue)
@@ -66,7 +58,7 @@ export default function App() {
 
     const remove = async () => {
         try {
-            await AsyncStorage.removeItem("MyName");
+            await AsyncStorage.removeItem("MyClass");
         } catch (err) {
             alert(err);
         } finally {
@@ -81,25 +73,24 @@ export default function App() {
     return (
         <View style={styles.container}>
             <ScrollView style={{ height: 30 }}>
-              <Text>{name}</Text>
+                <Text>{name}</Text>
             </ScrollView>
 
             <TextInput style={styles.input} placeholder="Class ID ie:C2-1230" onChangeText={(text) => setClassID(text)} />
-            <TextInput style={styles.input} placeholder="Student ID ie:11257911" onChangeText={(text) => setStudentID(text)} />
-            <TextInput style={styles.input} placeholder="Student Name" onChangeText={(text) => setStudentName(text)} />
-            <TextInput style={styles.input} placeholder="Seat Location ie:1" onChangeText={(text) => setSeatID(text)} />
+            <TextInput style={styles.input} placeholder="Class Name ie:My Class 1" onChangeText={(text) => setClassName(text)} />
+            <TextInput style={styles.input} placeholder="Title ie:Class 1" onChangeText={(text) => setTitle(text)} />
 
             <TouchableOpacity style={styles.button} onPress={() => save()} >
-                <Text style={{ color: "white" }}>Save Student</Text>
+                <Text style={{ color: "white" }}>Save Class</Text>
             </TouchableOpacity>
 
 
             <TouchableOpacity style={styles.button} onPress={() => remove()} >
-                <Text style={{ color: "white" }}>Clear All Students</Text>
+                <Text style={{ color: "white" }}>Clear All Classes</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.button} onPress={() => load()} >
-                <Text style={{ color: "white" }}>Load All Students</Text>
+                <Text style={{ color: "white" }}>Load All Classes</Text>
             </TouchableOpacity>
         </View>
     );
