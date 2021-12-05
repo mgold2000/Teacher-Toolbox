@@ -31,7 +31,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-
+///Users/tfausak/Documents/Capstone-Teacher-Toolbox/App.js
 //formatting the flatlist
 const formatData = (data, numColumns) => {
   if(data){
