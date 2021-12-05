@@ -1,6 +1,5 @@
 README
 
-
 All things to install
 
 npm install -g expo-cli
@@ -15,7 +14,8 @@ npm install react-redux
 
 npm install react-beautiful-dnd
 
-To run
+npm install
+
+TO RUN
 
 expo start
-
