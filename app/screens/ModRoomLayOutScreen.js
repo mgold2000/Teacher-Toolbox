@@ -22,6 +22,22 @@ import { changeStudentIndex, changeTakenRoll } from "../actions/actions.js";
 //import { Container, Row, Col, Card } from 'react-bootstrap';
 //import {Container, Row, Col, Card} from 'react-bootstrap';
 import {DragDropContext} from 'react-beautiful-dnd';
+import DraggableFlatList from "react-native-draggable-flatlist";
+
+
+
+//formatting the flatlist
+const formatData = (data, numColumns) => {
+  const numberOfFullRows = Math.floor(data.length / numColumns);
+
+  let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
+  while(numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
+    data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true});
+    numberOfElementsLastRow = numberOfElementsLastRow + 1;
+  }
+
+  return data;
+}
 
 
 
@@ -90,12 +106,18 @@ const ModRoomLayOutScreen = ({ navigation }) => {
 
 
     //This renders the student as a button
-    const renderStudent = (ID, name, sID, p) => {
+    const renderStudent = (ID, name, sID, p, seatID) => {
         if (selectedData === ID) {
             return (
-
-                <Pressable style={styles.sButton} >
+                
+                <Pressable style={({ pressed }) => [
+                  {
+                    backgroundColor: pressed ? 'white' : 'gray',
+                  },
+                  styles.sButton,
+                ]} >
                   <Text style={styles.sText}>{name}</Text>
+                  <Text style={styles.sText}>{seatID}</Text>
                 </Pressable>
             );
         }
@@ -197,11 +219,12 @@ const ModRoomLayOutScreen = ({ navigation }) => {
                   </View>
                 </View>
               </ModLayOutPopUp>
-              <Text style={globalStyles.baseText}>Modify Class Layout</Text>
+              <Text style={globalStyles.modText}>Modify Class Layout</Text>
               
               <FlatList
-                data={Students}
-                renderItem={({ item }) => (
+                data={formatData(Students, 3)}
+                numColumns={3}
+                renderItem={({ item, index }) => (
                      <View
                      style={{
                       flex: 1,
@@ -212,11 +235,34 @@ const ModRoomLayOutScreen = ({ navigation }) => {
                        item.classID,
                        item.studentName,
                        item.studentID,
-                       item.image_url
+                       item.image_url,
+                       item.seatID
                      )}
                      </View>
                 )}
-                //numColumns={3}
+                
+                keyExtractor={(item, studentID) => studentID.toString()}
+              />
+              <FlatList
+                data={formatData(Students, 3)}
+                numColumns={3}
+                renderItem={({ item, index }) => (
+                     <View
+                     style={{
+                      flex: 1,
+                      flexDirection: 'column',
+                      margin: 1
+                    }}>
+                     {renderStudent(
+                       item.classID,
+                       item.studentName,
+                       item.studentID,
+                       item.image_url,
+                       item.seatID
+                     )}
+                     </View>
+                )}
+                
                 keyExtractor={(item, studentID) => studentID.toString()}
               />
         
@@ -358,7 +404,6 @@ const styles = StyleSheet.create({
       paddingHorizontal: 12,
       borderRadius: 4,
       elevation: 3,
-      backgroundColor: 'blue',
     },
     sText: {
       fontSize: 16,

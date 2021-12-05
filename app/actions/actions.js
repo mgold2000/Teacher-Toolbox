@@ -4,6 +4,8 @@ import {
   DELETE_CLASS,
   CHANGE_STUDENT_INDEX,
   CHANGE_TAKEN_ROLL,
+  ADD_STUDENT,
+  DELETE_STUDENT,
 } from "./types";
 
 export const clickedOnClass = (classID) => ({

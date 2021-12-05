@@ -17,6 +17,15 @@ export const globalStyles = StyleSheet.create({
     top: -40,
     textAlignVertical: "center",
   },
+  modText: {
+    color: "red",
+    textAlign: "center",
+    fontWeight: "bold",
+    marginTop: 50,
+    fontSize: 30,
+    top: -40,
+    textAlignVertical: "center",
+  },
   container: {
     flex: 1,
     justifyContent: "center",

@@ -13,6 +13,7 @@ import {
   Alert,
   Dimensions,
   FlatList,
+  Pressable,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { globalStyles } from "../global";
@@ -27,6 +28,21 @@ function getRandomInt(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
 }
+
+
+//formatting the flatlist
+const formatData = (data, numColumns) => {
+  const numberOfFullRows = Math.floor(data.length / numColumns);
+
+  let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
+  while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
+    data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
+    numberOfElementsLastRow = numberOfElementsLastRow + 1;
+  }
+
+  return data;
+}
+
 
 const RoomLayOutScreen = ({ navigation }) => {
   //Sets the Title to ''
@@ -233,11 +249,15 @@ const RoomLayOutScreen = ({ navigation }) => {
   };
 
   //This renders the student as a button
-  const renderStudent = (ID, name, sID, p) => {
+  const renderStudent = (ID, name, sID, p, seatID) => {
     if (selectedData === ID) {
       return (
-        <Button
-          title={name}
+        <Pressable style={({ pressed }) => [
+          {
+            backgroundColor: pressed ? 'white' : 'blue',
+          },
+          styles.sButton,
+        ]}
           onPress={() =>
             navigation.navigate("StudentScreen", {
               studentName: name,
@@ -245,8 +265,9 @@ const RoomLayOutScreen = ({ navigation }) => {
               studentID: sID,
               photo: p,
             })
-          }
-        />
+          } >
+          <Text style={styles.sText}>{name}</Text>
+        </Pressable>
       );
     }
     return false;
@@ -434,7 +455,9 @@ const RoomLayOutScreen = ({ navigation }) => {
               <Button
                 title="Confirm"
                 //onPress={() => setVisible3(false)}
-                onPress={() => ADD_STUDENT}
+                onPress={() => 
+                navigation.navigate("AddStudentScreen", { name: "AddStudentScreen" },
+                setVisible3(false))}
               />
             </View>
           </View>
@@ -463,7 +486,7 @@ const RoomLayOutScreen = ({ navigation }) => {
               <Button title="Confirm"
                 onPress={() =>
                   navigation.navigate("ModRoomLayOutScreen", { name: "ModRoomLayOutScreen" },
-                  setVisible4(false))
+                    setVisible4(false))
                 }
               />
             </View>
@@ -472,18 +495,27 @@ const RoomLayOutScreen = ({ navigation }) => {
       </ChangeLayOutPopUp>
       <Text style={globalStyles.baseText}>Class {selectedData}</Text>
 
+
       <FlatList
-        data={Students}
-        renderItem={({ item }) => (
-          <View>
+        data={formatData(Students, 3)}
+        numColumns={3}
+        renderItem={({ item, index }) => (
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'column',
+              margin: 1
+            }}>
             {renderStudent(
               item.classID,
               item.studentName,
               item.studentID,
-              item.image_url
+              item.image_url,
+              item.seatID
             )}
           </View>
         )}
+
         keyExtractor={(item, studentID) => studentID.toString()}
       />
 
@@ -618,6 +650,21 @@ const styles = StyleSheet.create({
     backgroundColor: "grey",
     top: H * 0.75,
     position: "absolute",
+  },
+  sButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    borderRadius: 4,
+    elevation: 3,
+  },
+  sText: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'white',
   },
 });
 
