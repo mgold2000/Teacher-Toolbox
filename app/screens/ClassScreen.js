@@ -84,7 +84,7 @@ const ClassScreen = ({ navigation }) => {
       <ClassList />
       <TouchableOpacity
         style={styles.addClassButton}
-        onPress={() => setVisible1(true)}
+        onPress={() => navigation.navigate("AddClassScreen", { name: "AddClassScreen" })}
       >
         <Text style={({ fontSize: 25 }, { textAlign: "center" })}>
           ADD CLASS
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     color: "black",
     textAlign: "left",
     fontWeight: "bold",
-    marginTop: 50,
+    marginTop: 5,
     fontSize: 30,
     textAlignVertical: "center",
     left: 6,
