@@ -12,8 +12,20 @@ Haden Bennett
 
 ENVIROMENT SETUP
 
-1. Install expo
-   npm install -g expo-cli
+README
 
-2. Run the Server
-   expo start
+All things to install
+
+npm install -g expo-cli
+
+npm install @react-navigation/native
+
+expo install react-native-screens react-native-safe-area-context
+
+npm install redux
+
+npm install react-redux
+
+To run
+
+expo start
