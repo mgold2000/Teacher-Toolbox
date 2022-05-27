@@ -1,6 +1,4 @@
-# Capstone-Teacher-Toolbox
-
-Capstone development repository
+# Teacher-Toolbox
 
 Mitchell Goldsmith
 
